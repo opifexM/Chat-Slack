@@ -1,0 +1,16 @@
+{
+  "header": {
+    "login": "Войти",
+    "logout": "Выйти",
+    "userLogoutSuccess": "Пользователь '{{username}}' вышел"
+  },
+  "channel": {
+    "createSuccess": "Канал '{{name}}' с ID {{id}} создан",
+    "createFail": "Не удалось создать канал. Попробуйте еще раз",
+    "wrongName": "Неверное имя канала",
+    "addChannel": "Добавить канал",
+    "nameChannel": "Имя канала",
+    "cancel": "Отменить",
+    "create": "Создать"
+  }
+}
