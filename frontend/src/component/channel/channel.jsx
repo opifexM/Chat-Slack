@@ -39,6 +39,7 @@ export function Channel({channel, activeChannelId}) {
                className="d-flex dropdown btn-group">
             <button type="button"
                     className={classNames('w-100 rounded-0 text-start btn', {'btn-secondary': id === activeChannelId})}
+                    name={name}
                     onClick={handleChannelClick}
             >
               <span className="me-1">#</span>{name}
@@ -73,6 +74,7 @@ export function Channel({channel, activeChannelId}) {
         <li className="nav-item w-100">
           <button type="button"
                   className={classNames('w-100 rounded-0 text-start btn', {'btn-secondary': id === activeChannelId})}
+                  name={name}
                   onClick={handleChannelClick}
           >
             <span className="me-1">#</span>{name}

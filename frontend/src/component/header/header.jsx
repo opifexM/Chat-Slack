@@ -40,7 +40,7 @@ export function Header() {
   return (
     <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white">
       <div className="container">
-        <Link to={AppRoute.Main} className="navbar-brand" href="/">Chat Slack</Link>
+        <Link to={AppRoute.Main} className="navbar-brand" href="/">Hexlet Chat</Link>
         {headerContainer}
       </div>
     </nav>

@@ -1,4 +1,6 @@
-[![Actions Status](https://github.com/opifexM/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/opifexM/frontend-project-12/actions)
+[![hexlet-check](https://github.com/opifexM/Chat-Slack/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/opifexM/Chat-Slack/actions/workflows/hexlet-check.yml)
+[![Node CI](https://github.com/opifexM/Chat-Slack/actions/workflows/node-ci.yml/badge.svg)](https://github.com/opifexM/Chat-Slack/actions/workflows/node-ci.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/972570858d22e6155730/maintainability)](https://codeclimate.com/github/opifexM/Chat-Slack/maintainability)
 
 WebSite: https://1
 
@@ -39,4 +41,4 @@ Chat-Slack is a high-quality web application designed for real-time messaging, d
 
 ## License
 
-RSS Aggregator is licensed under the MIT license.
+Chat-Slack is licensed under the MIT license.
