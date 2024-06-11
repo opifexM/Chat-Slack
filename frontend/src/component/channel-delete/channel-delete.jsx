@@ -33,8 +33,8 @@ export function ChannelDelete() {
       const resultAction = await dispatch(removeChannelAction({
         id: dropMenuChannelId
       }));
-      const data = unwrapResult(resultAction);
-      toast.success(`Channel '${dropMenuChannelName}' with ID ${data.id} is deleted`, {
+      unwrapResult(resultAction);
+      toast.success('Канал удалён', {
         position: 'top-right'
       });
       dispatch(resetActiveChannel());

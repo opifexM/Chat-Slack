@@ -40,8 +40,8 @@ export function ChannelEdit() {
         id: dropMenuChannelId,
         name: values.name
       }));
-      const data = unwrapResult(resultAction);
-      toast.success(`Channel '${values.name}' with ID ${data.id} is edited`, {
+      unwrapResult(resultAction);
+      toast.success('Канал переименован', {
         position: 'top-right'
       });
       dispatch(resetActiveChannel());

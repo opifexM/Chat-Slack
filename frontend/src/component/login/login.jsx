@@ -33,7 +33,6 @@ export function Login() {
       });
       if (error === "Unauthorized") {
         setFieldError('username', 'Неверные имя пользователя или пароль');
-        setFieldError('password', 'Неверные имя пользователя или пароль');
       }
     }
     setSubmitting(false);

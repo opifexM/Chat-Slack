@@ -1,8 +1,7 @@
 import {toast} from "react-toastify";
 import {io} from "socket.io-client";
-import {BACKEND_SOCKET_URL} from "../const.js";
 
-export const socket = io(BACKEND_SOCKET_URL);
+export const socket = io();
 
 socket.on("connect", () => {
   toast.success("Connection to the server", {

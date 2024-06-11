@@ -40,7 +40,7 @@ export function ChannelCreate() {
         name: cleanedName
       }));
       const data = unwrapResult(resultAction);
-      toast.success(t('channel.createSuccess', { name: data.name, id: data.id }), {
+      toast.success(t('channel.createSuccess'), {
         position: 'top-right'
       });
       dispatch(resetActiveChannel());

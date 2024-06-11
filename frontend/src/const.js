@@ -5,16 +5,16 @@ export const AppRoute = {
 };
 
 export const APIRoute = {
-  RegisterUser: 'signup',
-  LoginUser: 'login',
-  GetChannels: 'channels',
-  AddChannel: 'channels',
-  EditChannel: 'channels/:id',
-  RemoveChannel: 'channels/:id',
-  GetMessages: 'messages',
-  AddMessage: 'messages',
-  EditMessage: 'messages/:id',
-  RemoveMessage: 'messages/:id',
+  RegisterUser: 'api/v1/signup',
+  LoginUser: 'api/v1/login',
+  GetChannels: 'api/v1/channels',
+  AddChannel: 'api/v1/channels',
+  EditChannel: 'api/v1/channels/:id',
+  RemoveChannel: 'api/v1/channels/:id',
+  GetMessages: 'api/v1/messages',
+  AddMessage: 'api/v1/messages',
+  EditMessage: 'api/v1/messages/:id',
+  RemoveMessage: 'api/v1/messages/:id',
   SubscribeNewChannel: 'newChannel',
   SubscribeRemoveChannel: 'removeChannel',
   SubscribeRenameChannel: 'renameChannel',
@@ -28,7 +28,5 @@ export const NameSpace = {
   UiSetting: 'UI_SETTING',
 };
 
-export const BACKEND_URL = 'http://localhost:5001/api/v1';
-export const BACKEND_SOCKET_URL = 'ws://localhost:5001';
 export const BACKEND_REQUEST_TIMEOUT = 5000;
 export const AUTH_TOKEN_KEY_NAME = 'chat-slack-token';

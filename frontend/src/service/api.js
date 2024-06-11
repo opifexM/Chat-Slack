@@ -1,10 +1,9 @@
 import axios from "axios";
-import {BACKEND_REQUEST_TIMEOUT, BACKEND_URL} from "../const.js";
+import {BACKEND_REQUEST_TIMEOUT} from "../const.js";
 import {getToken} from "./token.js";
 
 export function createAPI() {
   const api = axios.create({
-    baseURL: BACKEND_URL,
     timeout: BACKEND_REQUEST_TIMEOUT,
   });
 

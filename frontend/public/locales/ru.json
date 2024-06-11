@@ -5,7 +5,7 @@
     "userLogoutSuccess": "Пользователь '{{username}}' вышел"
   },
   "channel": {
-    "createSuccess": "Канал '{{name}}' с ID {{id}} создан",
+    "createSuccess": "Канал создан",
     "createFail": "Не удалось создать канал. Попробуйте еще раз",
     "wrongName": "Неверное имя канала",
     "addChannel": "Добавить канал",
