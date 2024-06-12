@@ -1,4 +1,4 @@
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
 export const registrationValidationSchema = Yup.object({
   username: Yup.string()

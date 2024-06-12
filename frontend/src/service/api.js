@@ -1,6 +1,6 @@
-import axios from "axios";
-import {BACKEND_REQUEST_TIMEOUT} from "../const.js";
-import {getToken} from "./token.js";
+import axios from 'axios';
+import { BACKEND_REQUEST_TIMEOUT } from '../const.js';
+import { getToken } from './token.js';
 
 export function createAPI() {
   const api = axios.create({
@@ -11,7 +11,7 @@ export function createAPI() {
     (config) => {
       const token = getToken();
       if (token && config.headers) {
-        config.headers['Authorization'] = `Bearer ${token}`;
+        config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     },

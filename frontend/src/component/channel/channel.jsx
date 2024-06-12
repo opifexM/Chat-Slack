@@ -1,16 +1,16 @@
-import classNames from "classnames";
-import {useDispatch} from "react-redux";
+import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
 import {
   setActiveChannelId,
   setActiveChannelName,
   setDropMenuChannelId,
   setDropMenuChannelName,
   setIsDeletingChannel,
-  setIsEditingChannel
-} from "../../store/ui-setting/ui-setting.slice.js";
+  setIsEditingChannel,
+} from '../../store/ui-setting/ui-setting.slice.js';
 
-export function Channel({channel, activeChannelId}) {
-  const {id, name, removable} = channel;
+export const Channel = ({ channel, activeChannelId }) => {
+  const { id, name, removable } = channel;
   const dispatch = useDispatch();
 
   function handleChannelClick() {
@@ -35,37 +35,45 @@ export function Channel({channel, activeChannelId}) {
     removable
       ? (
         <li className="nav-item w-100">
-          <div role="group"
-               className="d-flex dropdown btn-group">
-            <button type="button"
-                    className={classNames('w-100 rounded-0 text-start text-truncate btn', {'btn-secondary': id === activeChannelId})}
-                    name={name}
-                    onClick={handleChannelClick}
+          <div
+            role="group"
+            className="d-flex dropdown btn-group"
+          >
+            <button
+              type="button"
+              className={classNames('w-100 rounded-0 text-start text-truncate btn', { 'btn-secondary': id === activeChannelId })}
+              name={name}
+              onClick={handleChannelClick}
             >
-              <span className="me-1">#</span>{name}
+              <span className="me-1">#</span>
+              {name}
             </button>
             <div className="dropdown">
               <button
-                  className={classNames('flex-grow-0 dropdown-toggle dropdown-toggle-split btn', {'btn-secondary': id === activeChannelId})}
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  onClick={handleChannelDropMenuClick}
+                className={classNames('flex-grow-0 dropdown-toggle dropdown-toggle-split btn', { 'btn-secondary': id === activeChannelId })}
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                onClick={handleChannelDropMenuClick}
               >
                 <span className="visually-hidden">Управление каналом</span>
               </button>
               <ul className="dropdown-menu">
-              <li>
+                <li>
                   <button
                     className="dropdown-item"
                     onClick={handleDeleteClick}
-                  >Удалить</button>
+                  >
+                    Удалить
+                  </button>
                 </li>
                 <li>
                   <button
                     className="dropdown-item"
                     onClick={handleRenameClick}
-                  >Переименовать</button>
+                  >
+                    Переименовать
+                  </button>
                 </li>
               </ul>
             </div>
@@ -73,14 +81,16 @@ export function Channel({channel, activeChannelId}) {
         </li>
       ) : (
         <li className="nav-item w-100">
-          <button type="button"
-                  className={classNames('w-100 rounded-0 text-start btn', {'btn-secondary': id === activeChannelId})}
-                  name={name}
-                  onClick={handleChannelClick}
+          <button
+            type="button"
+            className={classNames('w-100 rounded-0 text-start btn', { 'btn-secondary': id === activeChannelId })}
+            name={name}
+            onClick={handleChannelClick}
           >
-            <span className="me-1">#</span>{name}
+            <span className="me-1">#</span>
+            {name}
           </button>
         </li>
       )
   );
-}
+};

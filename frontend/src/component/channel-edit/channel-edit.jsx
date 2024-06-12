@@ -1,22 +1,24 @@
-import {unwrapResult} from "@reduxjs/toolkit";
-import classNames from "classnames";
-import {ErrorMessage, Field, Form, Formik} from "formik";
-import {useDispatch, useSelector} from "react-redux";
-import {toast} from "react-toastify";
-import {editChannelAction, fetchChannelAction} from "../../store/api-action/chat-api-action.js";
+import { unwrapResult } from '@reduxjs/toolkit';
+import classNames from 'classnames';
+import {
+  ErrorMessage, Field, Form, Formik,
+} from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { editChannelAction, fetchChannelAction } from '../../store/api-action/chat-api-action.js';
 import {
   getDropMenuChannelId,
   getDropMenuChannelName,
-  getIsEditingChannel
-} from "../../store/ui-setting/ui-setting.selector.js";
+  getIsEditingChannel,
+} from '../../store/ui-setting/ui-setting.selector.js';
 import {
   resetActiveChannel,
   resetDropMenuChannel,
-  setIsEditingChannel
-} from "../../store/ui-setting/ui-setting.slice.js";
-import {channelCreateValidationSchema} from "../channel-create/channel-create-validation-schema.js";
+  setIsEditingChannel,
+} from '../../store/ui-setting/ui-setting.slice.js';
+import { channelCreateValidationSchema } from '../channel-create/channel-create-validation-schema.js';
 
-export function ChannelEdit() {
+export const ChannelEdit = () => {
   const dispatch = useDispatch();
 
   const isEditingChannel = useSelector(getIsEditingChannel);
@@ -34,24 +36,22 @@ export function ChannelEdit() {
     dispatch(setIsEditingChannel(false));
   }
 
-  const handleSubmit = async (values, {setSubmitting, setFieldError}) => {
+  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
       const resultAction = await dispatch(editChannelAction({
-        id: dropMenuChannelId,
-        name: values.name
+        id: dropMenuChannelId, name: values.name,
       }));
       unwrapResult(resultAction);
       toast.success('Канал переименован', {
-        position: 'top-right'
+        position: 'top-right',
       });
       dispatch(resetActiveChannel());
       dispatch(resetDropMenuChannel());
       dispatch(setIsEditingChannel(false));
       dispatch(fetchChannelAction());
-
     } catch (error) {
       toast.error(`Edit channel '${dropMenuChannelName}' failed. Please try again.`, {
-        position: 'top-right'
+        position: 'top-right',
       });
       setFieldError('name', 'Неверное имя канала');
     }
@@ -60,12 +60,14 @@ export function ChannelEdit() {
 
   return (
     <>
-      <div className="fade modal-backdrop show"></div>
-      <div role="dialog"
-           aria-modal="true"
-           style={{display: 'block'}}
-           className="fade modal show"
-           tabIndex="-1">
+      <div className="fade modal-backdrop show" />
+      <div
+        role="dialog"
+        aria-modal="true"
+        style={{ display: 'block' }}
+        className="fade modal show"
+        tabIndex="-1"
+      >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -76,7 +78,7 @@ export function ChannelEdit() {
                 data-bs-dismiss="modal"
                 className="btn btn-close"
                 onClick={handleCloseClick}
-              ></button>
+              />
             </div>
             <div className="modal-body">
               <Formik
@@ -84,31 +86,35 @@ export function ChannelEdit() {
                 validationSchema={channelCreateValidationSchema}
                 onSubmit={handleSubmit}
               >
-                {({isSubmitting, errors, touched}) => (
+                {({ isSubmitting, errors, touched }) => (
                   <Form className="">
                     <div>
                       <Field
                         name="name"
                         id="name"
-                        className={classNames('mb-2 form-control', {'is-invalid': errors.name && touched.name})}
+                        className={classNames('mb-2 form-control', { 'is-invalid': errors.name && touched.name })}
                       />
                       <label
                         className="visually-hidden"
                         htmlFor="name"
-                      >Имя канала</label>
-                      <ErrorMessage name="name" component="div" className="invalid-feedback"/>
+                      >
+                        Имя канала
+                      </label>
+                      <ErrorMessage name="name" component="div" className="invalid-feedback" />
                       <div className="d-flex justify-content-end">
                         <button
                           type="submit"
                           className="me-2 btn btn-primary"
                           disabled={isSubmitting}
-                        >Переименовать
+                        >
+                          Переименовать
                         </button>
                         <button
                           type="button"
                           className="btn btn-secondary"
                           onClick={handleCloseClick}
-                        >Отменить
+                        >
+                          Отменить
                         </button>
                       </div>
                     </div>
@@ -121,4 +127,4 @@ export function ChannelEdit() {
       </div>
     </>
   );
-}
+};

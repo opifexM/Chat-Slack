@@ -5,7 +5,6 @@ function getCookie(key) {
       .find((row) => row.startsWith(`${encodeURIComponent(key)}=`))
       ?.split('=')[1];
     return cookieValue ? decodeURIComponent(cookieValue) : '';
-
   } catch (error) {
     throw new Error(`Error processing cookie. ${error instanceof Error ? error.message : ''}`);
   }
@@ -27,4 +26,4 @@ function dropCookie(key) {
   }
 }
 
-export {getCookie, saveCookie, dropCookie};
+export { getCookie, saveCookie, dropCookie };

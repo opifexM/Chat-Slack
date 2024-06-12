@@ -1,9 +1,9 @@
-import {Navigate} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-export function PrivateRoute({ authorizationStatus, requiredAuthorizationStatus, children, declinedElement }) {
-  return (
-    requiredAuthorizationStatus === authorizationStatus
-      ? children
-      : <Navigate to={declinedElement}/>
-  );
-}
+export const PrivateRoute = ({
+  authorizationStatus, requiredAuthorizationStatus, children, declinedElement,
+}) => (
+  requiredAuthorizationStatus === authorizationStatus
+    ? children
+    : <Navigate to={declinedElement} />
+);

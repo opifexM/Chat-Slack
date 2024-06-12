@@ -1,4 +1,4 @@
-import {NameSpace} from "../../const.js";
+import { NameSpace } from '../../const.js';
 
 export const getIsLoading = (state) => state[NameSpace.ApiCommunication].isLoading;
 export const getIsAuthorized = (state) => state[NameSpace.ApiCommunication].isAuthorized;

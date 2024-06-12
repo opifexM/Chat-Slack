@@ -1,4 +1,4 @@
-import {AxiosError} from 'axios';
+import { AxiosError } from 'axios';
 
 export function handleApiError(error) {
   if (error instanceof AxiosError && error.response) {

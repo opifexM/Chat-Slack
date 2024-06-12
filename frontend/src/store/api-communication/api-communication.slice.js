@@ -1,6 +1,6 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {NameSpace} from "../../const.js";
-import {dropToken, saveToken} from "../../service/token.js";
+import { createSlice } from '@reduxjs/toolkit';
+import { NameSpace } from '../../const.js';
+import { dropToken, saveToken } from '../../service/token.js';
 import {
   addChannelAction,
   addMessageAction,
@@ -9,9 +9,9 @@ import {
   fetchChannelAction,
   fetchChatMessagesAction,
   removeChannelAction,
-  removeMessageAction
-} from "../api-action/chat-api-action.js";
-import {loginAction, registerAction} from "../api-action/user-api-action.js";
+  removeMessageAction,
+} from '../api-action/chat-api-action.js';
+import { loginAction, registerAction } from '../api-action/user-api-action.js';
 
 const initialState = {
   isLoading: false,
@@ -30,7 +30,7 @@ export const apiCommunicationSlice = createSlice({
     },
     resetAuthStatus: (state) => {
       state.isAuthorized = false;
-    }
+    },
   },
   extraReducers(builder) {
     builder
@@ -44,7 +44,7 @@ export const apiCommunicationSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(registerAction.fulfilled, (state, action) => {
-        const {token, username} = action.payload;
+        const { token, username } = action.payload;
         state.isAuthorized = true;
         state.username = username;
         saveToken(token);
@@ -61,7 +61,7 @@ export const apiCommunicationSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(loginAction.fulfilled, (state, action) => {
-        const {token, username} = action.payload;
+        const { token, username } = action.payload;
         state.isAuthorized = true;
         state.username = username;
         saveToken(token);
@@ -150,9 +150,8 @@ export const apiCommunicationSlice = createSlice({
       })
       .addCase(editMessageAction.fulfilled, (state) => {
         state.isLoading = false;
-      })
-    ;
-  }
+      });
+  },
 });
 
 export const {

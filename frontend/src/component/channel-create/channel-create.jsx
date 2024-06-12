@@ -1,22 +1,24 @@
-import {unwrapResult} from "@reduxjs/toolkit";
-import classNames from "classnames";
-import {ErrorMessage, Field, Form, Formik} from "formik";
-import {useTranslation} from "react-i18next";
-import {useDispatch, useSelector} from "react-redux";
-import {toast} from "react-toastify";
-import leoProfanity from "../../service/leo-profanity.js";
-import {addChannelAction, fetchChannelAction} from "../../store/api-action/chat-api-action.js";
-import {getIsCreatingChannel} from "../../store/ui-setting/ui-setting.selector.js";
+import { unwrapResult } from '@reduxjs/toolkit';
+import classNames from 'classnames';
+import {
+  ErrorMessage, Field, Form, Formik,
+} from 'formik';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import leoProfanity from '../../service/leo-profanity.js';
+import { addChannelAction, fetchChannelAction } from '../../store/api-action/chat-api-action.js';
+import { getIsCreatingChannel } from '../../store/ui-setting/ui-setting.selector.js';
 import {
   resetActiveChannel,
   resetDropMenuChannel,
   setActiveChannelId,
   setActiveChannelName,
-  setIsCreatingChannel
-} from "../../store/ui-setting/ui-setting.slice.js";
-import {channelCreateValidationSchema} from "./channel-create-validation-schema.js";
+  setIsCreatingChannel,
+} from '../../store/ui-setting/ui-setting.slice.js';
+import { channelCreateValidationSchema } from './channel-create-validation-schema.js';
 
-export function ChannelCreate() {
+export const ChannelCreate = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -33,26 +35,25 @@ export function ChannelCreate() {
     dispatch(setIsCreatingChannel(false));
   }
 
-  const handleSubmit = async (values, {setSubmitting, setFieldError}) => {
+  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
       const cleanedName = leoProfanity.clean(values.name);
       const resultAction = await dispatch(addChannelAction({
-        name: cleanedName
+        name: cleanedName,
       }));
       const data = unwrapResult(resultAction);
       toast.success(t('channel.createSuccess'), {
-        position: 'top-right'
+        position: 'top-right',
       });
       dispatch(resetActiveChannel());
       dispatch(resetDropMenuChannel());
       dispatch(setActiveChannelId(data.id));
-      dispatch(setActiveChannelName(data.name))
+      dispatch(setActiveChannelName(data.name));
       dispatch(setIsCreatingChannel(false));
       dispatch(fetchChannelAction());
-
     } catch (error) {
       toast.error(t('channel.createFail'), {
-        position: 'top-right'
+        position: 'top-right',
       });
       setFieldError('name', t('channel.wrongName'));
     }
@@ -61,12 +62,14 @@ export function ChannelCreate() {
 
   return (
     <>
-      <div className="fade modal-backdrop show"></div>
-      <div role="dialog"
-           aria-modal="true"
-           style={{display: 'block'}}
-           className="fade modal show"
-           tabIndex="-1">
+      <div className="fade modal-backdrop show" />
+      <div
+        role="dialog"
+        aria-modal="true"
+        style={{ display: 'block' }}
+        className="fade modal show"
+        tabIndex="-1"
+      >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -77,7 +80,7 @@ export function ChannelCreate() {
                 data-bs-dismiss="modal"
                 className="btn btn-close"
                 onClick={handleCloseClick}
-              ></button>
+              />
             </div>
             <div className="modal-body">
               <Formik
@@ -85,31 +88,35 @@ export function ChannelCreate() {
                 validationSchema={channelCreateValidationSchema}
                 onSubmit={handleSubmit}
               >
-                {({isSubmitting, errors, touched}) => (
+                {({ isSubmitting, errors, touched }) => (
                   <Form className="">
                     <div>
                       <Field
                         name="name"
                         id="name"
-                        className={classNames('mb-2 form-control', {'is-invalid': errors.name && touched.name})}
+                        className={classNames('mb-2 form-control', { 'is-invalid': errors.name && touched.name })}
                       />
                       <label
                         className="visually-hidden"
                         htmlFor="name"
-                      >{t('channel.nameChannel')}</label>
-                      <ErrorMessage name="name" component="div" className="invalid-feedback"/>
+                      >
+                        {t('channel.nameChannel')}
+                      </label>
+                      <ErrorMessage name="name" component="div" className="invalid-feedback" />
                       <div className="d-flex justify-content-end">
                         <button
                           type="submit"
                           className="me-2 btn btn-primary"
                           disabled={isSubmitting}
-                        >{t('channel.create')}
+                        >
+                          {t('channel.create')}
                         </button>
                         <button
                           type="button"
                           className="btn btn-secondary"
                           onClick={handleCloseClick}
-                        >{t('channel.cancel')}
+                        >
+                          {t('channel.cancel')}
                         </button>
                       </div>
                     </div>
@@ -122,4 +129,4 @@ export function ChannelCreate() {
       </div>
     </>
   );
-}
+};

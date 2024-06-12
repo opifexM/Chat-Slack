@@ -1,7 +1,7 @@
-import {useSelector} from "react-redux";
-import {getIsLoading} from "../../store/api-communication/api-communcation.selector.js";
+import { useSelector } from 'react-redux';
+import { getIsLoading } from '../../store/api-communication/api-communcation.selector.js';
 
-export function LoadingScreen() {
+export const LoadingScreen = () => {
   const isLoading = useSelector(getIsLoading);
   if (!isLoading) {
     return null;
@@ -54,10 +54,10 @@ export function LoadingScreen() {
       <style>{keyframes}</style>
       <div style={overlayStyle}>
         <div style={containerStyle}>
-          <div style={spinnerStyle}></div>
+          <div style={spinnerStyle} />
           <p style={textStyle}>Loading...</p>
         </div>
       </div>
     </>
   );
-}
+};

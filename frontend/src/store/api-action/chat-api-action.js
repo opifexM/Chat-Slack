@@ -1,18 +1,18 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {toast} from "react-toastify";
-import {APIRoute} from "../../const.js";
-import {handleApiError} from "../../service/api-error-handler.js";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import { APIRoute } from '../../const.js';
+import { handleApiError } from '../../service/api-error-handler.js';
 
 export const fetchChannelAction = createAsyncThunk(
   'chat/fetchChannelAction',
-  async (_arg, {extra: api, rejectWithValue}) => {
+  async (_arg, { extra: api, rejectWithValue }) => {
     try {
       const { data } = await api.get(APIRoute.GetChannels);
 
       return data;
     } catch (error) {
       toast.warning(handleApiError(error), {
-        position: 'top-right'
+        position: 'top-right',
       });
       return rejectWithValue(handleApiError(error));
     }
@@ -21,14 +21,14 @@ export const fetchChannelAction = createAsyncThunk(
 
 export const addChannelAction = createAsyncThunk(
   'chat/addChannelAction',
-  async ({ name }, {extra: api, rejectWithValue}) => {
+  async ({ name }, { extra: api, rejectWithValue }) => {
     try {
-      const { data } = await api.post(APIRoute.AddChannel, {name});
+      const { data } = await api.post(APIRoute.AddChannel, { name });
 
       return data;
     } catch (error) {
       toast.warning(handleApiError(error), {
-        position: 'top-right'
+        position: 'top-right',
       });
       return rejectWithValue(handleApiError(error));
     }
@@ -37,7 +37,7 @@ export const addChannelAction = createAsyncThunk(
 
 export const removeChannelAction = createAsyncThunk(
   'chat/removeChannelAction',
-  async ({ id }, {extra: api, rejectWithValue}) => {
+  async ({ id }, { extra: api, rejectWithValue }) => {
     try {
       const url = APIRoute.RemoveChannel.replace(':id', id);
       const { data } = await api.delete(url);
@@ -45,7 +45,7 @@ export const removeChannelAction = createAsyncThunk(
       return data;
     } catch (error) {
       toast.warning(handleApiError(error), {
-        position: 'top-right'
+        position: 'top-right',
       });
       return rejectWithValue(handleApiError(error));
     }
@@ -54,15 +54,15 @@ export const removeChannelAction = createAsyncThunk(
 
 export const editChannelAction = createAsyncThunk(
   'chat/editChannelAction',
-  async ({ id, name }, {extra: api, rejectWithValue}) => {
+  async ({ id, name }, { extra: api, rejectWithValue }) => {
     try {
       const url = APIRoute.EditChannel.replace(':id', id);
-      const { data } = await api.patch(url, {name});
+      const { data } = await api.patch(url, { name });
 
       return data;
     } catch (error) {
       toast.warning(handleApiError(error), {
-        position: 'top-right'
+        position: 'top-right',
       });
       return rejectWithValue(handleApiError(error));
     }
@@ -71,31 +71,30 @@ export const editChannelAction = createAsyncThunk(
 
 export const fetchChatMessagesAction = createAsyncThunk(
   'chat/fetchChatMessagesAction',
-  async (_arg, {extra: api, rejectWithValue}) => {
+  async (_arg, { extra: api, rejectWithValue }) => {
     try {
       const { data } = await api.get(APIRoute.GetMessages);
 
       return data;
     } catch (error) {
       toast.warning(handleApiError(error), {
-        position: 'top-right'
+        position: 'top-right',
       });
       return rejectWithValue(handleApiError(error));
     }
   },
 );
 
-
 export const addMessageAction = createAsyncThunk(
   'chat/addMessageAction',
-  async ({ body, channelId, username }, {extra: api, rejectWithValue}) => {
+  async ({ body, channelId, username }, { extra: api, rejectWithValue }) => {
     try {
-      const { data } = await api.post(APIRoute.AddMessage, {body, channelId, username});
+      const { data } = await api.post(APIRoute.AddMessage, { body, channelId, username });
 
       return data;
     } catch (error) {
       toast.warning(handleApiError(error), {
-        position: 'top-right'
+        position: 'top-right',
       });
       return rejectWithValue(handleApiError(error));
     }
@@ -104,7 +103,7 @@ export const addMessageAction = createAsyncThunk(
 
 export const removeMessageAction = createAsyncThunk(
   'chat/removeMessageAction',
-  async ({ id }, {extra: api, rejectWithValue}) => {
+  async ({ id }, { extra: api, rejectWithValue }) => {
     try {
       const url = APIRoute.RemoveMessage.replace(':id', id);
       const { data } = await api.delete(url);
@@ -112,7 +111,7 @@ export const removeMessageAction = createAsyncThunk(
       return data;
     } catch (error) {
       toast.warning(handleApiError(error), {
-        position: 'top-right'
+        position: 'top-right',
       });
       return rejectWithValue(handleApiError(error));
     }
@@ -121,15 +120,15 @@ export const removeMessageAction = createAsyncThunk(
 
 export const editMessageAction = createAsyncThunk(
   'chat/editMessageAction',
-  async ({ id, body }, {extra: api, rejectWithValue}) => {
+  async ({ id, body }, { extra: api, rejectWithValue }) => {
     try {
       const url = APIRoute.EditMessage.replace(':id', id);
-      const { data } = await api.patch(url, {body});
+      const { data } = await api.patch(url, { body });
 
       return data;
     } catch (error) {
       toast.warning(handleApiError(error), {
-        position: 'top-right'
+        position: 'top-right',
       });
       return rejectWithValue(handleApiError(error));
     }

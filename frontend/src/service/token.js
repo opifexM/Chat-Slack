@@ -1,5 +1,5 @@
-import {AUTH_TOKEN_KEY_NAME} from "../const.js";
-import {dropCookie, getCookie, saveCookie} from "./cookie.js";
+import { AUTH_TOKEN_KEY_NAME } from '../const.js';
+import { dropCookie, getCookie, saveCookie } from './cookie.js';
 
 function getToken() {
   return getCookie(AUTH_TOKEN_KEY_NAME);

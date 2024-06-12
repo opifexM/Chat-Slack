@@ -1,13 +1,15 @@
-import {unwrapResult} from "@reduxjs/toolkit";
-import classNames from "classnames";
-import {ErrorMessage, Field, Form, Formik} from "formik";
-import {useDispatch} from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
-import {toast} from "react-toastify";
-import {AppRoute} from "../../const.js";
-import {loginAction} from "../../store/api-action/user-api-action.js";
+import { unwrapResult } from '@reduxjs/toolkit';
+import classNames from 'classnames';
+import {
+  ErrorMessage, Field, Form, Formik,
+} from 'formik';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AppRoute } from '../../const.js';
+import { loginAction } from '../../store/api-action/user-api-action.js';
 
-export function Login() {
+export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -16,7 +18,7 @@ export function Login() {
     password: '',
   };
 
-  const handleSubmit = async (values, {setSubmitting, setFieldError}) => {
+  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
       const resultAction = await dispatch(loginAction({
         username: values.username,
@@ -24,14 +26,14 @@ export function Login() {
       }));
       const data = unwrapResult(resultAction);
       toast.success(`Logging user '${data.username}' is successful`, {
-        position: 'top-right'
+        position: 'top-right',
       });
       navigate(AppRoute.Main);
     } catch (error) {
       toast.error('Logging failed. Please try again.', {
-        position: 'top-right'
+        position: 'top-right',
       });
-      if (error === "Unauthorized") {
+      if (error === 'Unauthorized') {
         setFieldError('username', 'Неверные имя пользователя или пароль');
       }
     }
@@ -52,7 +54,7 @@ export function Login() {
           initialValues={initialValues}
           onSubmit={handleSubmit}
         >
-          {({isSubmitting, errors, touched}) => (
+          {({ isSubmitting, errors, touched }) => (
             <Form className="col-12 col-md-6 mt-3 mt-mb-0">
               <h1 className="text-center mb-4">Войти</h1>
               <div className="form-floating mb-3">
@@ -60,10 +62,10 @@ export function Login() {
                   name="username"
                   autoComplete="username"
                   id="username"
-                  className={classNames('form-control', {'is-invalid': errors.username && touched.username})}
+                  className={classNames('form-control', { 'is-invalid': errors.username && touched.username })}
                 />
                 <label htmlFor="username">Ваш ник</label>
-                <ErrorMessage name="username" component="div" className="invalid-feedback"/>
+                <ErrorMessage name="username" component="div" className="invalid-feedback" />
               </div>
               <div className="form-floating mb-4">
                 <Field
@@ -71,16 +73,17 @@ export function Login() {
                   autoComplete="current-password"
                   type="password"
                   id="password"
-                  className={classNames('form-control', {'is-invalid': errors.password && touched.password})}
+                  className={classNames('form-control', { 'is-invalid': errors.password && touched.password })}
                 />
                 <label className="form-label" htmlFor="password">Пароль</label>
-                <ErrorMessage name="password" component="div" className="invalid-feedback"/>
+                <ErrorMessage name="password" component="div" className="invalid-feedback" />
               </div>
               <button
                 type="submit"
                 className="w-100 mb-3 btn btn-outline-primary"
                 disabled={isSubmitting}
-              >Войти
+              >
+                Войти
               </button>
             </Form>
           )}
@@ -88,9 +91,11 @@ export function Login() {
       </div>
       <div className="card-footer p-4">
         <div className="text-center">
-          <span>Нет аккаунта?</span> <Link to={AppRoute.Register}>Регистрация</Link>
+          <span>Нет аккаунта?</span>
+          {' '}
+          <Link to={AppRoute.Register}>Регистрация</Link>
         </div>
       </div>
     </div>
   );
-}
+};

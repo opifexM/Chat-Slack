@@ -1,5 +1,5 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {NameSpace} from "../../const.js";
+import { createSlice } from '@reduxjs/toolkit';
+import { NameSpace } from '../../const.js';
 
 const initialState = {
   isCreatingChannel: false,
@@ -42,7 +42,7 @@ export const uiSettingSlice = createSlice({
     },
     addNewMessageActiveChannelMessages: (state, action) => {
       const data = action.payload;
-      if (!state.activeChannelMessages.find(message => message.id === data.id)) {
+      if (!state.activeChannelMessages.find((message) => message.id === data.id)) {
         state.activeChannelMessages.push(data);
       }
     },
@@ -84,7 +84,7 @@ export const uiSettingSlice = createSlice({
     setIsEditingChat: (state, action) => {
       state.isEditingChat = action.payload;
     },
-  }
+  },
 });
 
 export const {
@@ -105,5 +105,5 @@ export const {
   setIsEditingChat,
   setDropMenuChatUserName,
   setActiveChannelMessages,
-  addNewMessageActiveChannelMessages
+  addNewMessageActiveChannelMessages,
 } = uiSettingSlice.actions;

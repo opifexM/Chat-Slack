@@ -1,4 +1,4 @@
-import {NameSpace} from "../../const.js";
+import { NameSpace } from '../../const.js';
 
 export const getIsCreatingChannel = (state) => state[NameSpace.UiSetting].isCreatingChannel;
 export const getIsEditingChannel = (state) => state[NameSpace.UiSetting].isEditingChannel;
