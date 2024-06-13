@@ -2,7 +2,7 @@
 [![Node CI](https://github.com/opifexM/Chat-Slack/actions/workflows/node-ci.yml/badge.svg)](https://github.com/opifexM/Chat-Slack/actions/workflows/node-ci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/972570858d22e6155730/maintainability)](https://codeclimate.com/github/opifexM/Chat-Slack/maintainability)
 
-WebSite: https://1
+WebSite: https://chat-slack-6g21.onrender.com/
 
 # Chat-Slack
 
