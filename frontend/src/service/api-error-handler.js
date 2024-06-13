@@ -5,6 +5,7 @@ export function handleApiError(error) {
   if (error instanceof AxiosError && error.response) {
     const { message, details } = error.response.data;
 
+    // eslint-disable-next-line
     let detailedMessages = Array.isArray(message) ? message.join(' ') : message;
     if (details?.length) {
       const additionalMessages = details.map((detail) => detail.messages.join(' ')).join(' ');

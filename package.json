@@ -7,7 +7,10 @@
     "build": "npm run build --prefix frontend",
     "start": "start-server -s ./frontend/dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd frontend && npm ci"
+    "postinstall": "cd frontend && npm ci",
+    "start-server": "nohup start-server -s ./frontend/dist &",
+    "start-react": "cd frontend && npm start",
+    "deploy": "npm run build && npm run start-server && npm run start-react"
   },
   "author": "",
   "license": "ISC",
