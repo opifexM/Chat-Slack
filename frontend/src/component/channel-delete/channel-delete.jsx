@@ -14,6 +14,7 @@ import {
   setIsDeletingChannel,
 } from '../../store/ui-setting/ui-setting.slice.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const ChannelDelete = () => {
   const dispatch = useDispatch();
 

@@ -7,6 +7,7 @@ import {
   setIsEditingChat,
 } from '../../store/ui-setting/ui-setting.slice.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Message = ({ message }) => {
   const dispatch = useDispatch();
   const {
@@ -48,6 +49,7 @@ export const Message = ({ message }) => {
           </button>
           <ul className="dropdown-menu">
             <li>
+              {/* eslint-disable-next-line react/button-has-type */}
               <button
                 className="dropdown-item"
                 onClick={handleDeleteClick}
@@ -56,6 +58,7 @@ export const Message = ({ message }) => {
               </button>
             </li>
             <li>
+              {/* eslint-disable-next-line react/button-has-type */}
               <button
                 className="dropdown-item"
                 onClick={handleRenameClick}

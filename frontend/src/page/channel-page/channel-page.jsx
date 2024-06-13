@@ -21,6 +21,7 @@ import {
   setActiveChannelName,
 } from '../../store/ui-setting/ui-setting.slice.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const ChannelPage = () => {
   const dispatch = useDispatch();
   const channels = useSelector(getChannels);
@@ -79,11 +80,12 @@ export const ChannelPage = () => {
 
   useEffect(() => {
     if (channels.length && activeChannelId) {
-      const activeChannelMessages = messages.filter((message) => message.channelId === activeChannelId);
+      const activeChannelMessages = messages
+          .filter((message) => message.channelId === activeChannelId);
       dispatch(setActiveChannelMessageCount(activeChannelMessages.length));
       dispatch(setActiveChannelMessages(activeChannelMessages));
     }
-  }, [channels.length, messages.length, activeChannelId, dispatch, messages]);
+  }, [channels.length, messages.length, activeChannelId, dispatch, messages, channels]);
 
   if (!channels.length) {
     return null;

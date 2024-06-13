@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const.js';
 import { dropToken, saveToken } from '../../service/token.js';

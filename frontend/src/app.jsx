@@ -12,6 +12,7 @@ import { getIsAuthorized } from './store/api-communication/api-communcation.sele
 import { setIsAuthorizedStatus } from './store/api-communication/api-communication.slice.js';
 import './i18n';
 
+// eslint-disable-next-line import/prefer-default-export
 export const App = ({ RouterComponent = BrowserRouter, routerProps = {} }) => {
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ export const App = ({ RouterComponent = BrowserRouter, routerProps = {} }) => {
   const authorizationStatus = useSelector(getIsAuthorized);
 
   return (
+  /* eslint-disable react/jsx-props-no-spreading */
     <RouterComponent {...routerProps}>
       <Routes>
         <Route
@@ -36,7 +38,7 @@ export const App = ({ RouterComponent = BrowserRouter, routerProps = {} }) => {
             >
               <ChannelPage />
             </PrivateRoute>
-               )}
+                    )}
         />
         <Route
           path={AppRoute.Login}
@@ -48,7 +50,7 @@ export const App = ({ RouterComponent = BrowserRouter, routerProps = {} }) => {
             >
               <LoginPage />
             </PrivateRoute>
-               )}
+                    )}
         />
         <Route
           path={AppRoute.Register}
@@ -60,13 +62,13 @@ export const App = ({ RouterComponent = BrowserRouter, routerProps = {} }) => {
             >
               <RegistrationPage />
             </PrivateRoute>
-               )}
+                    )}
         />
         <Route
           path="*"
           element={
             <NotFoundPage />
-               }
+                    }
         />
       </Routes>
     </RouterComponent>

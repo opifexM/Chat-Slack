@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { getIsLoading } from '../../store/api-communication/api-communcation.selector.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const LoadingScreen = () => {
   const isLoading = useSelector(getIsLoading);
   if (!isLoading) {

@@ -6,6 +6,7 @@ import { fetchChatMessagesAction, removeMessageAction } from '../../store/api-ac
 import { getDropMenuChatId, getDropMenuChatText, getIsDeletingChat } from '../../store/ui-setting/ui-setting.selector.js';
 import { resetDropMenuChat, setIsDeletingChat } from '../../store/ui-setting/ui-setting.slice.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const MessageDelete = () => {
   const dispatch = useDispatch();
 

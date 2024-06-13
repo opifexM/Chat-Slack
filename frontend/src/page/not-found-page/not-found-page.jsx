@@ -1,5 +1,6 @@
 import { Header } from '../../component/header/header.jsx';
 
+// eslint-disable-next-line import/prefer-default-export
 export const NotFoundPage = () => (
   <div className="container-fluid h-100">
     <Header />

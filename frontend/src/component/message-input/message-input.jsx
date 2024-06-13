@@ -10,6 +10,7 @@ import { getUsername } from '../../store/api-communication/api-communcation.sele
 import { getActiveChannelId } from '../../store/ui-setting/ui-setting.selector.js';
 import { messageInputValidationSchema } from './message-input-validation-schema.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const MessageInput = () => {
   const dispatch = useDispatch();
   const activeChannelId = useSelector(getActiveChannelId);

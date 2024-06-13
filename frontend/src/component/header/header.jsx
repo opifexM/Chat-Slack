@@ -7,6 +7,7 @@ import { dropToken } from '../../service/token.js';
 import { getIsAuthorized, getUsername } from '../../store/api-communication/api-communcation.selector.js';
 import { resetAuthStatus } from '../../store/api-communication/api-communication.slice.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

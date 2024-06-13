@@ -9,6 +9,7 @@ import { getDropMenuChatId, getDropMenuChatText, getIsEditingChat } from '../../
 import { resetDropMenuChat, setIsEditingChat } from '../../store/ui-setting/ui-setting.slice.js';
 import { messageInputValidationSchema } from '../message-input/message-input-validation-schema.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const MessageEdit = () => {
   const dispatch = useDispatch();
 
@@ -85,6 +86,7 @@ export const MessageEdit = () => {
                         id="body"
                         className="mb-2 form-control"
                       />
+                      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                       <label
                         className="visually-hidden"
                         htmlFor="body"

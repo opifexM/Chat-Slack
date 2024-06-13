@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import { AppRoute } from '../../const.js';
 import { loginAction } from '../../store/api-action/user-api-action.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ export const Login = () => {
                   id="username"
                   className={classNames('form-control', { 'is-invalid': errors.username && touched.username })}
                 />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label htmlFor="username">Ваш ник</label>
                 <ErrorMessage name="username" component="div" className="invalid-feedback" />
               </div>
@@ -75,6 +77,7 @@ export const Login = () => {
                   id="password"
                   className={classNames('form-control', { 'is-invalid': errors.password && touched.password })}
                 />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label className="form-label" htmlFor="password">Пароль</label>
                 <ErrorMessage name="password" component="div" className="invalid-feedback" />
               </div>

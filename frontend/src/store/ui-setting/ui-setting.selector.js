@@ -5,7 +5,8 @@ export const getIsEditingChannel = (state) => state[NameSpace.UiSetting].isEditi
 export const getIsDeletingChannel = (state) => state[NameSpace.UiSetting].isDeletingChannel;
 export const getActiveChannelId = (state) => state[NameSpace.UiSetting].activeChannelId;
 export const getActiveChannelName = (state) => state[NameSpace.UiSetting].activeChannelName;
-export const getActiveChannelMessageCount = (state) => state[NameSpace.UiSetting].activeChannelMessageCount;
+export const getActiveChannelMessageCount = (state) => state[NameSpace.UiSetting]
+  .activeChannelMessageCount;
 export const getActiveChannelMessages = (state) => state[NameSpace.UiSetting].activeChannelMessages;
 export const getDropMenuChannelId = (state) => state[NameSpace.UiSetting].dropMenuChannelId;
 export const getDropMenuChannelName = (state) => state[NameSpace.UiSetting].dropMenuChannelName;

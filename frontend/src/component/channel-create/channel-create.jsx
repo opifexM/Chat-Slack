@@ -18,6 +18,7 @@ import {
 } from '../../store/ui-setting/ui-setting.slice.js';
 import { channelCreateValidationSchema } from './channel-create-validation-schema.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const ChannelCreate = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();

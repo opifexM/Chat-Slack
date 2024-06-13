@@ -10,6 +10,7 @@ import { AppRoute } from '../../const.js';
 import { registerAction } from '../../store/api-action/user-api-action.js';
 import { registrationValidationSchema } from './registration-validation-schema.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Registration = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -71,6 +72,7 @@ export const Registration = () => {
                   id="username"
                   className={classNames('form-control', { 'is-invalid': errors.username && touched.username })}
                 />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label htmlFor="username">Имя пользователя</label>
                 <ErrorMessage name="username" component="div" className="invalid-feedback" />
               </div>
@@ -83,6 +85,7 @@ export const Registration = () => {
                   id="password"
                   className={classNames('form-control', { 'is-invalid': errors.password && touched.password })}
                 />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label htmlFor="password">Пароль</label>
                 <ErrorMessage name="password" component="div" className="invalid-feedback" />
               </div>
@@ -94,6 +97,7 @@ export const Registration = () => {
                   id="confirmPassword"
                   className={classNames('form-control', { 'is-invalid': errors.confirmPassword && touched.confirmPassword })}
                 />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label htmlFor="confirmPassword">Подтвердите пароль</label>
                 <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
               </div>

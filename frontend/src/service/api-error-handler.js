@@ -1,9 +1,11 @@
 import { AxiosError } from 'axios';
 
+// eslint-disable-next-line import/prefer-default-export
 export function handleApiError(error) {
   if (error instanceof AxiosError && error.response) {
     const { message, details } = error.response.data;
 
+    // eslint-disable-next-line functional/no-let
     let detailedMessages;
     detailedMessages = Array.isArray(message) ? message.join(' ') : message;
 

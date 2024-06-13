@@ -18,6 +18,7 @@ import {
 } from '../../store/ui-setting/ui-setting.slice.js';
 import { channelCreateValidationSchema } from '../channel-create/channel-create-validation-schema.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const ChannelEdit = () => {
   const dispatch = useDispatch();
 
@@ -94,6 +95,7 @@ export const ChannelEdit = () => {
                         id="name"
                         className={classNames('mb-2 form-control', { 'is-invalid': errors.name && touched.name })}
                       />
+                      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                       <label
                         className="visually-hidden"
                         htmlFor="name"

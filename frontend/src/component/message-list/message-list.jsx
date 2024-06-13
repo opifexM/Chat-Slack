@@ -7,6 +7,7 @@ import {
 import { MessageInput } from '../message-input/message-input.jsx';
 import { Message } from '../message/message.jsx';
 
+// eslint-disable-next-line import/prefer-default-export
 export const MessageList = () => {
   const activeChannelName = useSelector(getActiveChannelName);
   const activeChannelMessages = useSelector(getActiveChannelMessages);

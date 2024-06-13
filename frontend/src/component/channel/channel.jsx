@@ -9,6 +9,7 @@ import {
   setIsEditingChannel,
 } from '../../store/ui-setting/ui-setting.slice.js';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Channel = ({ channel, activeChannelId }) => {
   const { id, name, removable } = channel;
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ export const Channel = ({ channel, activeChannelId }) => {
               </button>
               <ul className="dropdown-menu">
                 <li>
+                  {/* eslint-disable-next-line react/button-has-type */}
                   <button
                     className="dropdown-item"
                     onClick={handleDeleteClick}
@@ -68,6 +70,7 @@ export const Channel = ({ channel, activeChannelId }) => {
                   </button>
                 </li>
                 <li>
+                  {/* eslint-disable-next-line react/button-has-type */}
                   <button
                     className="dropdown-item"
                     onClick={handleRenameClick}

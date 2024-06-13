@@ -4,6 +4,7 @@ import { getActiveChannelId } from '../../store/ui-setting/ui-setting.selector.j
 import { setIsCreatingChannel } from '../../store/ui-setting/ui-setting.slice.js';
 import { Channel } from '../channel/channel.jsx';
 
+// eslint-disable-next-line import/prefer-default-export
 export const ChannelList = () => {
   const dispatch = useDispatch();
   const channels = useSelector(getChannels);
