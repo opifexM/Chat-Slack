@@ -1,6 +1,7 @@
 import { Header } from '../../component/header/header.jsx';
 import { Login } from '../../component/login/login.jsx';
 
+// eslint-disable-next-line import/prefer-default-export
 export const LoginPage = () => (
   <div className="container-fluid h-100 ">
     <Header />

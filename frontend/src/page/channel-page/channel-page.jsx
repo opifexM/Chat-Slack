@@ -76,12 +76,12 @@ export const ChannelPage = () => {
       dispatch(setActiveChannelId(channels[0].id));
       dispatch(setActiveChannelName(channels[0].name));
     }
-  }, [channels.length, activeChannelId, dispatch]);
+  }, [channels.length, activeChannelId, dispatch, channels]);
 
   useEffect(() => {
     if (channels.length && activeChannelId) {
       const activeChannelMessages = messages
-          .filter((message) => message.channelId === activeChannelId);
+        .filter((message) => message.channelId === activeChannelId);
       dispatch(setActiveChannelMessageCount(activeChannelMessages.length));
       dispatch(setActiveChannelMessages(activeChannelMessages));
     }
