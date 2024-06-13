@@ -8,3 +8,5 @@ start-backend:
 	npm run start
 start-frontend:
 	cd frontend && npm start
+start-both:
+	make start-backend & make start-frontend
