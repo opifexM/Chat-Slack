@@ -48,9 +48,13 @@ export const ChannelEdit = () => {
 
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      await dispatch(editChannelAction({
+      const resultAction = await dispatch(editChannelAction({
         id: dropMenuChannelId, name: values.name,
       }));
+      unwrapResult(resultAction);
+      toast.success('Канал переименован', {
+        position: 'top-right',
+      });
       dispatch(resetActiveChannel());
       dispatch(resetDropMenuChannel());
       dispatch(setIsEditingChannel(false));

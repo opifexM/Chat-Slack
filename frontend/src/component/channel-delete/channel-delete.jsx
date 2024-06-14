@@ -1,3 +1,4 @@
+import {unwrapResult} from "@reduxjs/toolkit";
 import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -32,9 +33,13 @@ export const ChannelDelete = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      await dispatch(removeChannelAction({
+      const resultAction = await dispatch(removeChannelAction({
         id: dropMenuChannelId,
       }));
+      unwrapResult(resultAction);
+      toast.success('Канал удалён', {
+        position: 'top-right',
+      });
       if (activeChannelId === dropMenuChannelId) {
         dispatch(resetActiveChannel());
       }

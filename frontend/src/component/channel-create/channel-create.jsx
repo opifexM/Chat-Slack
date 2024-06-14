@@ -51,6 +51,9 @@ export const ChannelCreate = () => {
         name: cleanedName,
       }));
       const data = unwrapResult(resultAction);
+      toast.success(t('channel.createSuccess'), {
+        position: 'top-right',
+      });
       dispatch(resetActiveChannel());
       dispatch(resetDropMenuChannel());
       dispatch(setActiveChannelId(data.id));
