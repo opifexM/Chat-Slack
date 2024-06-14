@@ -2,7 +2,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { COOKIE_TOKEN_KEY_NAME, NameSpace } from '../../const.js';
-import {dropCookie, getCookie, saveCookie} from '../../service/cookie';
+import { dropCookie, getCookie, saveCookie } from '../../service/cookie';
 import { dropToken, saveToken } from '../../service/token.js';
 import { fetchChannelAction, fetchChatMessagesAction } from '../api-action/chat-api-action.js';
 import { loginAction, registerAction } from '../api-action/user-api-action.js';
