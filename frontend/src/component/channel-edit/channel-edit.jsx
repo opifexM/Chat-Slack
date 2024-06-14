@@ -1,8 +1,8 @@
-import { unwrapResult } from '@reduxjs/toolkit';
 import classNames from 'classnames';
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { editChannelAction, fetchChannelAction } from '../../store/api-action/chat-api-action.js';
@@ -25,6 +25,15 @@ export const ChannelEdit = () => {
   const isEditingChannel = useSelector(getIsEditingChannel);
   const dropMenuChannelId = useSelector(getDropMenuChannelId);
   const dropMenuChannelName = useSelector(getDropMenuChannelName);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [isEditingChannel]);
+
   if (!isEditingChannel || !dropMenuChannelId) {
     return null;
   }
@@ -39,13 +48,9 @@ export const ChannelEdit = () => {
 
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const resultAction = await dispatch(editChannelAction({
+      await dispatch(editChannelAction({
         id: dropMenuChannelId, name: values.name,
       }));
-      unwrapResult(resultAction);
-      toast.success('Канал переименован', {
-        position: 'top-right',
-      });
       dispatch(resetActiveChannel());
       dispatch(resetDropMenuChannel());
       dispatch(setIsEditingChannel(false));
@@ -93,6 +98,7 @@ export const ChannelEdit = () => {
                       <Field
                         name="name"
                         id="name"
+                        innerRef={inputRef}
                         className={classNames('mb-2 form-control', { 'is-invalid': errors.name && touched.name })}
                       />
                       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}

@@ -1,9 +1,9 @@
-import { unwrapResult } from '@reduxjs/toolkit';
 import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { fetchChannelAction, removeChannelAction } from '../../store/api-action/chat-api-action.js';
 import {
+  getActiveChannelId,
   getDropMenuChannelId,
   getDropMenuChannelName,
   getIsDeletingChannel,
@@ -21,6 +21,7 @@ export const ChannelDelete = () => {
   const isDeletingChannel = useSelector(getIsDeletingChannel);
   const dropMenuChannelId = useSelector(getDropMenuChannelId);
   const dropMenuChannelName = useSelector(getDropMenuChannelName);
+  const activeChannelId = useSelector(getActiveChannelId);
   if (!isDeletingChannel || !dropMenuChannelId) {
     return null;
   }
@@ -31,14 +32,12 @@ export const ChannelDelete = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const resultAction = await dispatch(removeChannelAction({
+      await dispatch(removeChannelAction({
         id: dropMenuChannelId,
       }));
-      unwrapResult(resultAction);
-      toast.success('Канал удалён', {
-        position: 'top-right',
-      });
-      dispatch(resetActiveChannel());
+      if (activeChannelId === dropMenuChannelId) {
+        dispatch(resetActiveChannel());
+      }
       dispatch(resetDropMenuChannel());
       dispatch(setIsDeletingChannel(false));
       dispatch(fetchChannelAction());

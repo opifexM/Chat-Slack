@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -22,8 +23,15 @@ import { channelCreateValidationSchema } from './channel-create-validation-schem
 export const ChannelCreate = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
+  const inputRef = useRef(null);
   const isCreatingChannel = useSelector(getIsCreatingChannel);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isCreatingChannel]);
+
   if (!isCreatingChannel) {
     return null;
   }
@@ -43,9 +51,6 @@ export const ChannelCreate = () => {
         name: cleanedName,
       }));
       const data = unwrapResult(resultAction);
-      toast.success(t('channel.createSuccess'), {
-        position: 'top-right',
-      });
       dispatch(resetActiveChannel());
       dispatch(resetDropMenuChannel());
       dispatch(setActiveChannelId(data.id));
@@ -95,6 +100,7 @@ export const ChannelCreate = () => {
                       <Field
                         name="name"
                         id="name"
+                        innerRef={inputRef}
                         className={classNames('mb-2 form-control', { 'is-invalid': errors.name && touched.name })}
                       />
                       <label

@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { animateScroll } from 'react-scroll';
 import { getChannels } from '../../store/api-communication/api-communcation.selector.js';
 import { getActiveChannelId } from '../../store/ui-setting/ui-setting.selector.js';
 import { setIsCreatingChannel } from '../../store/ui-setting/ui-setting.slice.js';
@@ -22,8 +24,17 @@ export const ChannelList = () => {
     dispatch(setIsCreatingChannel(true));
   }
 
+  useEffect(() => {
+    if (channels.length && activeChannelId === channels[0]?.id) {
+      animateScroll.scrollToTop({ containerId: 'channels-box', delay: 0, duration: 0 });
+    }
+    if (channels.length && activeChannelId === channels[channels.length - 1]?.id) {
+      animateScroll.scrollToBottom({ containerId: 'channels-box', delay: 0, duration: 0 });
+    }
+  }, [channels.length, activeChannelId, channels]);
+
   return (
-    <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
+    <div className="col-4 col-md-3 border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
         <b>Каналы</b>
         <button
@@ -44,7 +55,10 @@ export const ChannelList = () => {
       </div>
       <ul
         id="channels-box"
-        className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block"
+        className="nav flex-column nav-pills nav-fill px-2 mb-3 h-100 d-block"
+        style={{
+          overflowY: 'auto',
+        }}
       >
         {channelElements}
       </ul>

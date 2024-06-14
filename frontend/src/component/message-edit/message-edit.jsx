@@ -1,7 +1,7 @@
-import { unwrapResult } from '@reduxjs/toolkit';
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { editMessageAction, fetchChatMessagesAction } from '../../store/api-action/chat-api-action.js';
@@ -16,6 +16,15 @@ export const MessageEdit = () => {
   const isEditingChat = useSelector(getIsEditingChat);
   const dropMenuChatId = useSelector(getDropMenuChatId);
   const dropMenuChatText = useSelector(getDropMenuChatText);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [isEditingChat]);
+
   if (!isEditingChat || !dropMenuChatId) {
     return null;
   }
@@ -30,14 +39,10 @@ export const MessageEdit = () => {
 
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const resultAction = await dispatch(editMessageAction({
+      await dispatch(editMessageAction({
         id: dropMenuChatId,
         body: values.body,
       }));
-      const data = unwrapResult(resultAction);
-      toast.success(`Message '${dropMenuChatText}' with ID ${data.id} is edited`, {
-        position: 'top-right',
-      });
       dispatch(resetDropMenuChat());
       dispatch(setIsEditingChat(false));
       dispatch(fetchChatMessagesAction());
@@ -84,6 +89,7 @@ export const MessageEdit = () => {
                       <Field
                         name="body"
                         id="body"
+                        innerRef={inputRef}
                         className="mb-2 form-control"
                       />
                       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}

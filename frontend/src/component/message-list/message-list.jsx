@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { animateScroll } from 'react-scroll';
 import {
   getActiveChannelMessageCount,
   getActiveChannelMessages,
@@ -20,18 +22,28 @@ export const MessageList = () => {
     />
   ));
 
+  useEffect(() => {
+    animateScroll.scrollToBottom({ containerId: 'messages-box', delay: 0, duration: 0 });
+  }, [activeChannelMessages.length]);
+
   return (
     <div className="col p-0 h-100">
       <div className="d-flex flex-column h-100">
         <div className="bg-light mb-4 p-3 shadow-sm small">
           <p className="m-0"><b>{`# ${activeChannelName}`}</b></p>
-          <span
-            className="text-muted"
-          >
+          <span className="text-muted">
             {`${activeChannelMessageCount} сообщений`}
           </span>
         </div>
-        <div id="messages-box" className="chat-messages overflow-auto px-5 ">
+        <div
+          id="messages-box"
+          className="chat-messages px-5"
+          style={{
+            flex: '1 1 auto',
+            overflowY: 'auto',
+            height: '0px',
+          }}
+        >
           {messageElements}
         </div>
         <MessageInput />

@@ -1,4 +1,3 @@
-import { unwrapResult } from '@reduxjs/toolkit';
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
@@ -23,15 +22,11 @@ export const MessageInput = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm, setFieldError }) => {
     try {
       const cleanedText = leoProfanity.clean(values.body);
-      const resultAction = await dispatch(addMessageAction({
+      await dispatch(addMessageAction({
         username,
         body: cleanedText,
         channelId: activeChannelId,
       }));
-      const data = unwrapResult(resultAction);
-      toast.success(`Message with Id '${data.id}' sent`, {
-        position: 'top-right',
-      });
       resetForm();
       dispatch(fetchChatMessagesAction());
     } catch (error) {

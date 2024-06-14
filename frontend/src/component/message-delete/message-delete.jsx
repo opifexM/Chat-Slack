@@ -1,4 +1,3 @@
-import { unwrapResult } from '@reduxjs/toolkit';
 import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -23,13 +22,9 @@ export const MessageDelete = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const resultAction = await dispatch(removeMessageAction({
+      await dispatch(removeMessageAction({
         id: dropMenuChatId,
       }));
-      const data = unwrapResult(resultAction);
-      toast.success(`Message '${dropMenuChatText}' with ID ${data.id} is deleted`, {
-        position: 'top-right',
-      });
       dispatch(resetDropMenuChat());
       dispatch(setIsDeletingChat(false));
       dispatch(fetchChatMessagesAction());

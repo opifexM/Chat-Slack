@@ -45,7 +45,7 @@ export const Message = ({ message }) => {
             aria-expanded="false"
             onClick={() => handleDropMenuClick(id, body, username)}
           >
-            <span className="visually-hidden">Управление каналом</span>
+            <span className="visually-hidden">Управление сообщением</span>
           </button>
           <ul className="dropdown-menu">
             <li>
