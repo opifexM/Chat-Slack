@@ -68,7 +68,7 @@ export const Channel = ({ channel, activeChannelId }) => {
                     className="dropdown-item"
                     onClick={handleDeleteClick}
                   >
-                    Удалить
+                    {t('channel.delete')}
                   </button>
                 </li>
                 <li>
@@ -77,7 +77,7 @@ export const Channel = ({ channel, activeChannelId }) => {
                     className="dropdown-item"
                     onClick={handleRenameClick}
                   >
-                    Переименовать
+                    {t('channel.rename')}
                   </button>
                 </li>
               </ul>

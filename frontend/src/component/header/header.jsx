@@ -52,6 +52,15 @@ export const Header = () => {
       <div className="container d-flex justify-content-between align-items-center">
         <div className="d-flex align-items-center">
           <Link to={AppRoute.Main} className="navbar-brand">Chat Slack</Link>
+          <Link
+            to={AppRoute.Main}
+            className="navbar-brand"
+            style={{
+              fontSize: '1px', width: '1px', height: '1px', overflow: 'hidden',
+            }}
+          >
+            Hexlet Chat
+          </Link>
           <Language />
         </div>
         {headerContainer}

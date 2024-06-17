@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Language = () => {
   const { i18n } = useTranslation();
 
@@ -13,8 +14,8 @@ export const Language = () => {
         Language
       </button>
       <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li><button className="dropdown-item" onClick={() => changeLanguage('en')}>EN</button></li>
-        <li><button className="dropdown-item" onClick={() => changeLanguage('ru')}>RU</button></li>
+        <li><button className="dropdown-item" type="button" onClick={() => changeLanguage('en')}>EN</button></li>
+        <li><button className="dropdown-item" type="button" onClick={() => changeLanguage('ru')}>RU</button></li>
       </ul>
     </div>
   );

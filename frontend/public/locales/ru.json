@@ -35,7 +35,7 @@
     "wrongName": "Неверное имя канала",
     "addChannel": "Добавить канал",
     "deleteChannel": "Удалить канал '{{dropMenuChannelName}}'",
-    "renameChannel": "Изменить канал '{{dropMenuChannelName}}'",
+    "renameChannel": "Переименовать канал '{{dropMenuChannelName}}'",
     "nameChannel": "Имя канала",
     "cancel": "Отменить",
     "create": "Создать",
