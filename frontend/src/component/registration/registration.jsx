@@ -32,14 +32,8 @@ export const Registration = () => {
       toast.success(`Registration user '${data.username}' is successful`, {
         position: 'top-right',
       });
-      toast.info('You are logged in to the system', {
-        position: 'top-right',
-      });
       navigate(AppRoute.Main);
     } catch (error) {
-      toast.error('Registration failed. Please try again.', {
-        position: 'top-right',
-      });
       if (error === 'Conflict') {
         setFieldError('username', 'Такой пользователь уже существует');
       }

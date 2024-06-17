@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChannelCreate } from '../../component/channel-create/channel-create.jsx';
 import { ChannelDelete } from '../../component/channel-delete/channel-delete.jsx';
@@ -9,7 +9,7 @@ import { MessageDelete } from '../../component/message-delete/message-delete.jsx
 import { MessageEdit } from '../../component/message-edit/message-edit.jsx';
 import { MessageList } from '../../component/message-list/message-list.jsx';
 import { APIRoute } from '../../const.js';
-import { socket } from '../../service/socket.js';
+import { initializeSocket } from '../../service/socket';
 import { fetchChannelAction, fetchChatMessagesAction } from '../../store/api-action/chat-api-action.js';
 import { getChannels, getMessages, getUsername } from '../../store/api-communication/api-communcation.selector.js';
 import { getActiveChannelId } from '../../store/ui-setting/ui-setting.selector.js';
@@ -28,6 +28,7 @@ export const ChannelPage = () => {
   const messages = useSelector(getMessages);
   const activeChannelId = useSelector(getActiveChannelId);
   const username = useSelector(getUsername);
+  const socket = useMemo(() => initializeSocket(), []);
 
   useEffect(() => {
     dispatch(fetchChannelAction());
@@ -37,7 +38,7 @@ export const ChannelPage = () => {
   useEffect(() => {
     const handleNewMessage = (data) => {
       if (username !== data.username
-        && data.channelId === activeChannelId) {
+                && data.channelId === activeChannelId) {
         dispatch(addNewMessageActiveChannelMessages(data));
       }
     };
@@ -57,7 +58,7 @@ export const ChannelPage = () => {
       socket.off(APIRoute.SubscribeRenameMessage, handleFetchMessages);
       socket.off(APIRoute.SubscribeRemoveMessage, handleFetchMessages);
     };
-  }, [dispatch, activeChannelId, username]);
+  }, [dispatch, activeChannelId, username, socket]);
 
   useEffect(() => {
     socket.on(APIRoute.SubscribeNewChannel, () => dispatch(fetchChannelAction()));
@@ -69,7 +70,7 @@ export const ChannelPage = () => {
       socket.off(APIRoute.SubscribeRenameChannel);
       socket.off(APIRoute.SubscribeRemoveChannel);
     };
-  }, [dispatch]);
+  }, [dispatch, socket]);
 
   useEffect(() => {
     if (channels.length && !activeChannelId) {

@@ -10,7 +10,6 @@ import { RegistrationPage } from './page/registration-page/registration-page.jsx
 import { checkAuth } from './service/authorization.js';
 import { getIsAuthorized } from './store/api-communication/api-communcation.selector.js';
 import { setIsAuthorizedStatus } from './store/api-communication/api-communication.slice.js';
-import './i18n';
 
 // eslint-disable-next-line import/prefer-default-export
 export const App = ({ RouterComponent = BrowserRouter, routerProps = {} }) => {
