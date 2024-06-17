@@ -1,4 +1,5 @@
 import { Form, Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { fetchChatMessagesAction, removeMessageAction } from '../../store/api-action/chat-api-action.js';
@@ -8,6 +9,7 @@ import { resetDropMenuChat, setIsDeletingChat } from '../../store/ui-setting/ui-
 // eslint-disable-next-line import/prefer-default-export
 export const MessageDelete = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const isDeletingChat = useSelector(getIsDeletingChat);
   const dropMenuChatId = useSelector(getDropMenuChatId);
@@ -29,7 +31,7 @@ export const MessageDelete = () => {
       dispatch(setIsDeletingChat(false));
       dispatch(fetchChatMessagesAction());
     } catch (error) {
-      toast.error(`Delete message '${dropMenuChatText}' failed. Please try again.`, {
+      toast.error(t('message.deleteFail'), {
         position: 'top-right',
       });
     }
@@ -49,7 +51,7 @@ export const MessageDelete = () => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <div className="modal-title h4">{`Удалить сообщение ID '${dropMenuChatId}'`}</div>
+              <div className="modal-title h4">{t('message.deleteMessage', { dropMenuChatId })}</div>
               <button
                 type="button"
                 aria-label="Close"
@@ -60,7 +62,7 @@ export const MessageDelete = () => {
             </div>
             <div className="modal-body">
               <p className="badge text-bg-secondary text-wrap">{dropMenuChatText}</p>
-              <p className="lead">Уверены?</p>
+              <p className="lead">{t('message.confirm')}</p>
               <Formik
                 initialValues={{}}
                 onSubmit={handleSubmit}
@@ -74,14 +76,14 @@ export const MessageDelete = () => {
                           className="me-2 btn btn-danger"
                           disabled={isSubmitting}
                         >
-                          Удалить
+                          {t('message.delete')}
                         </button>
                         <button
                           type="button"
                           className="btn btn-secondary"
                           onClick={handleCloseClick}
                         >
-                          Отменить
+                          {t('message.cancel')}
                         </button>
                       </div>
                     </div>

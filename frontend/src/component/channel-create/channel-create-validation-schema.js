@@ -1,10 +1,10 @@
 import * as Yup from 'yup';
 
 // eslint-disable-next-line import/prefer-default-export
-export const channelCreateValidationSchema = Yup.object({
+export const channelCreateValidationSchema = (t) => Yup.object({
   name: Yup.string()
-    .min(3, 'От 3 до 20 символов')
-    .max(20, 'От 3 до 20 символов')
-    .matches(/^\S.*\S$/, 'Название не должно начинаться или заканчиваться пробелом')
-    .required('Обязательное поле'),
+    .min(3, t('channel.validation.length', { min: 3, max: 20 }))
+    .max(20, t('channel.validation.length', { min: 3, max: 20 }))
+    .matches(/^\S.*\S$/, t('channel.validation.noSpaces'))
+    .required(t('channel.validation.required')),
 });

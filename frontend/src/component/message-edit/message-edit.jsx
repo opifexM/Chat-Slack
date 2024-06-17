@@ -1,7 +1,9 @@
+import classNames from 'classnames';
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { editMessageAction, fetchChatMessagesAction } from '../../store/api-action/chat-api-action.js';
@@ -12,6 +14,7 @@ import { messageInputValidationSchema } from '../message-input/message-input-val
 // eslint-disable-next-line import/prefer-default-export
 export const MessageEdit = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const isEditingChat = useSelector(getIsEditingChat);
   const dropMenuChatId = useSelector(getDropMenuChatId);
@@ -47,10 +50,10 @@ export const MessageEdit = () => {
       dispatch(setIsEditingChat(false));
       dispatch(fetchChatMessagesAction());
     } catch (error) {
-      toast.error(`Edit message '${dropMenuChatText}' failed. Please try again.`, {
+      toast.error(t('message.editFail'), {
         position: 'top-right',
       });
-      setFieldError('name', 'Ошибка отправки текста');
+      setFieldError('name', t('message.wrongText'));
     }
     setSubmitting(false);
   };
@@ -68,7 +71,7 @@ export const MessageEdit = () => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <div className="modal-title h4">{`Изменить сообщение ID '${dropMenuChatId}'`}</div>
+              <div className="modal-title h4">{t('message.editMessage', { dropMenuChatId })}</div>
               <button
                 type="button"
                 aria-label="Close"
@@ -80,24 +83,24 @@ export const MessageEdit = () => {
             <div className="modal-body">
               <Formik
                 initialValues={initialValues}
-                validationSchema={messageInputValidationSchema}
+                validationSchema={messageInputValidationSchema(t)}
                 onSubmit={handleSubmit}
               >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, errors, touched }) => (
                   <Form className="">
                     <div>
                       <Field
                         name="body"
                         id="body"
                         innerRef={inputRef}
-                        className="mb-2 form-control"
+                        className={classNames('mb-2 form-control', { 'is-invalid': errors.body && touched.body })}
                       />
                       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                       <label
                         className="visually-hidden"
                         htmlFor="body"
                       >
-                        Текст сообщения
+                        {t('message.text')}
                       </label>
                       <ErrorMessage name="body" component="div" className="invalid-feedback" />
                       <div className="d-flex justify-content-end">
@@ -106,14 +109,14 @@ export const MessageEdit = () => {
                           className="me-2 btn btn-primary"
                           disabled={isSubmitting}
                         >
-                          Изменить
+                          {t('message.edit')}
                         </button>
                         <button
                           type="button"
                           className="btn btn-secondary"
                           onClick={handleCloseClick}
                         >
-                          Отменить
+                          {t('message.cancel')}
                         </button>
                       </div>
                     </div>

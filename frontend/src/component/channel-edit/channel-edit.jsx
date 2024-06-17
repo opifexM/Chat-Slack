@@ -4,6 +4,7 @@ import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { editChannelAction, fetchChannelAction } from '../../store/api-action/chat-api-action.js';
@@ -22,6 +23,7 @@ import { channelCreateValidationSchema } from '../channel-create/channel-create-
 // eslint-disable-next-line import/prefer-default-export
 export const ChannelEdit = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const isEditingChannel = useSelector(getIsEditingChannel);
   const dropMenuChannelId = useSelector(getDropMenuChannelId);
@@ -53,7 +55,7 @@ export const ChannelEdit = () => {
         id: dropMenuChannelId, name: values.name,
       }));
       unwrapResult(resultAction);
-      toast.success('Канал переименован', {
+      toast.success(t('channel.renameSuccess'), {
         position: 'top-right',
       });
       dispatch(resetActiveChannel());
@@ -61,10 +63,10 @@ export const ChannelEdit = () => {
       dispatch(setIsEditingChannel(false));
       dispatch(fetchChannelAction());
     } catch (error) {
-      toast.error(`Edit channel '${dropMenuChannelName}' failed. Please try again.`, {
+      toast.error(t('channel.renameFail'), {
         position: 'top-right',
       });
-      setFieldError('name', 'Неверное имя канала');
+      setFieldError('name', t('channel.wrongName'));
     }
     setSubmitting(false);
   };
@@ -82,7 +84,7 @@ export const ChannelEdit = () => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <div className="modal-title h4">{`Изменить канал '${dropMenuChannelName}'`}</div>
+              <div className="modal-title h4">{t('channel.wrongName', { dropMenuChannelName })}</div>
               <button
                 type="button"
                 aria-label="Close"
@@ -94,7 +96,7 @@ export const ChannelEdit = () => {
             <div className="modal-body">
               <Formik
                 initialValues={initialValues}
-                validationSchema={channelCreateValidationSchema}
+                validationSchema={channelCreateValidationSchema(t)}
                 onSubmit={handleSubmit}
               >
                 {({ isSubmitting, errors, touched }) => (
@@ -111,7 +113,7 @@ export const ChannelEdit = () => {
                         className="visually-hidden"
                         htmlFor="name"
                       >
-                        Имя канала
+                        {t('channel.nameChannel')}
                       </label>
                       <ErrorMessage name="name" component="div" className="invalid-feedback" />
                       <div className="d-flex justify-content-end">
@@ -120,14 +122,14 @@ export const ChannelEdit = () => {
                           className="me-2 btn btn-primary"
                           disabled={isSubmitting}
                         >
-                          Переименовать
+                          {t('channel.rename')}
                         </button>
                         <button
                           type="button"
                           className="btn btn-secondary"
                           onClick={handleCloseClick}
                         >
-                          Отменить
+                          {t('channel.cancel')}
                         </button>
                       </div>
                     </div>

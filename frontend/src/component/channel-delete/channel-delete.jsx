@@ -1,5 +1,6 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { Form, Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { fetchChannelAction, removeChannelAction } from '../../store/api-action/chat-api-action.js';
@@ -18,11 +19,12 @@ import {
 // eslint-disable-next-line import/prefer-default-export
 export const ChannelDelete = () => {
   const dispatch = useDispatch();
-
+  const { t } = useTranslation();
   const isDeletingChannel = useSelector(getIsDeletingChannel);
   const dropMenuChannelId = useSelector(getDropMenuChannelId);
   const dropMenuChannelName = useSelector(getDropMenuChannelName);
   const activeChannelId = useSelector(getActiveChannelId);
+
   if (!isDeletingChannel || !dropMenuChannelId) {
     return null;
   }
@@ -37,7 +39,7 @@ export const ChannelDelete = () => {
         id: dropMenuChannelId,
       }));
       unwrapResult(resultAction);
-      toast.success('Канал удалён', {
+      toast.success(t('channel.deleteSuccess'), {
         position: 'top-right',
       });
       if (activeChannelId === dropMenuChannelId) {
@@ -47,7 +49,7 @@ export const ChannelDelete = () => {
       dispatch(setIsDeletingChannel(false));
       dispatch(fetchChannelAction());
     } catch (error) {
-      toast.error(`Delete channel '${dropMenuChannelName}' failed. Please try again.`, {
+      toast.error(t('channel.deleteFail'), {
         position: 'top-right',
       });
     }
@@ -67,7 +69,7 @@ export const ChannelDelete = () => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <div className="modal-title h4">{`Удалить канал '${dropMenuChannelName}'`}</div>
+              <div className="modal-title h4">{t('channel.deleteChannel', { dropMenuChannelName })}</div>
               <button
                 type="button"
                 aria-label="Close"
@@ -77,7 +79,7 @@ export const ChannelDelete = () => {
               />
             </div>
             <div className="modal-body">
-              <p className="lead">Уверены?</p>
+              <p className="lead">{t('channel.confirm')}</p>
               <Formik
                 initialValues={{}}
                 onSubmit={handleSubmit}
@@ -91,14 +93,14 @@ export const ChannelDelete = () => {
                           className="me-2 btn btn-danger"
                           disabled={isSubmitting}
                         >
-                          Удалить
+                          {t('channel.delete')}
                         </button>
                         <button
                           type="button"
                           className="btn btn-secondary"
                           onClick={handleCloseClick}
                         >
-                          Отменить
+                          {t('channel.cancel')}
                         </button>
                       </div>
                     </div>

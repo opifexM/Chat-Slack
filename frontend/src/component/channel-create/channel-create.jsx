@@ -94,7 +94,7 @@ export const ChannelCreate = () => {
             <div className="modal-body">
               <Formik
                 initialValues={initialValues}
-                validationSchema={channelCreateValidationSchema}
+                validationSchema={channelCreateValidationSchema(t)}
                 onSubmit={handleSubmit}
               >
                 {({ isSubmitting, errors, touched }) => (

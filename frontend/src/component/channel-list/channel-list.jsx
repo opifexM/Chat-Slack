@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { animateScroll } from 'react-scroll';
 import { getChannels } from '../../store/api-communication/api-communcation.selector.js';
@@ -9,6 +10,7 @@ import { Channel } from '../channel/channel.jsx';
 // eslint-disable-next-line import/prefer-default-export
 export const ChannelList = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const channels = useSelector(getChannels);
   const activeChannelId = useSelector(getActiveChannelId);
 
@@ -36,7 +38,7 @@ export const ChannelList = () => {
   return (
     <div className="col-4 col-md-3 border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
-        <b>Каналы</b>
+        <b>{t('channel.channels')}</b>
         <button
           type="button"
           className="p-0 text-primary btn btn-group-vertical"

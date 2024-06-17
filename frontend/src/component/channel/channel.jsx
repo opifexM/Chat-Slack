@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import {
   setActiveChannelId,
@@ -13,6 +14,7 @@ import {
 export const Channel = ({ channel, activeChannelId }) => {
   const { id, name, removable } = channel;
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   function handleChannelClick() {
     dispatch(setActiveChannelId(id));
@@ -57,7 +59,7 @@ export const Channel = ({ channel, activeChannelId }) => {
                 aria-expanded="false"
                 onClick={handleChannelDropMenuClick}
               >
-                <span className="visually-hidden">Управление каналом</span>
+                <span className="visually-hidden">{t('channel.control')}</span>
               </button>
               <ul className="dropdown-menu">
                 <li>

@@ -1,16 +1,75 @@
 {
-  "header": {
+  "notFound": {
+    "noPage": "Страница не найдена",
+    "redirectStart": "Но вы можете перейти",
+    "redirectStop": "на главную страницу"
+  },
+  "load": {
+    "loading": "Загрузка..."
+  },
+  "user": {
     "login": "Войти",
     "logout": "Выйти",
-    "userLogoutSuccess": "Пользователь '{{username}}' вышел"
+    "loginSuccess": "Пользователь '{{username}}' вошел",
+    "logoutSuccess": "Пользователь '{{username}}' вышел",
+    "registerSuccess": "Пользователь '{{username}}' зарегистрирован",
+    "loginFail": "Не удалось войти пользователем. Попробуйте еще раз",
+    "wrongNamePassword": "Неверные имя пользователя или пароль",
+    "userExists": "Такой пользователь уже существует",
+    "nick": "Ваш ник",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "name": "Имя пользователя",
+    "noAccount": "Нет аккаунта?",
+    "registration": "Регистрация",
+    "registrationProcess": "Зарегистрироваться",
+    "haveAccount": "Есть аккаунт?"
   },
   "channel": {
     "createSuccess": "Канал создан",
+    "deleteSuccess": "Канал удалён",
+    "renameSuccess": "Канал переименован",
     "createFail": "Не удалось создать канал. Попробуйте еще раз",
+    "deleteFail": "Не удалось удалить канал. Попробуйте еще раз",
+    "renameFail": "Не удалось переименовать канал. Попробуйте еще раз",
     "wrongName": "Неверное имя канала",
     "addChannel": "Добавить канал",
+    "deleteChannel": "Удалить канал '{{dropMenuChannelName}}'",
+    "renameChannel": "Изменить канал '{{dropMenuChannelName}}'",
     "nameChannel": "Имя канала",
     "cancel": "Отменить",
-    "create": "Создать"
+    "create": "Создать",
+    "delete": "Удалить",
+    "rename": "Переименовать",
+    "confirm": "Уверены?",
+    "control": "Управление каналом",
+    "channels": "Каналы",
+    "validation": {
+      "length": "От {{min}} до {{max}} символов",
+      "noSpaces": "Название не должно начинаться или заканчиваться пробелом",
+      "required": "Обязательное поле"
+    }
+  },
+  "message": {
+    "sendFail": "Не удалось отправить сообщение. Попробуйте еще раз",
+    "deleteFail": "Не удалось удалить сообщение. Попробуйте еще раз",
+    "editFail": "Не удалось изменить сообщение. Попробуйте еще раз",
+    "editMessage": "Изменить сообщение ID '{{dropMenuChatId}}'",
+    "deleteMessage": "Удалить сообщение ID '{{dropMenuChatId}}'",
+    "control": "Управление сообщением",
+    "delete": "Удалить",
+    "edit": "Изменить",
+    "confirm": "Уверены?",
+    "cancel": "Отменить",
+    "send": "Отправить",
+    "wrongText": "Текст невозможно отправить",
+    "text": "Текст сообщения",
+    "new": "Новое сообщение",
+    "inputText": "Введите сообщение...",
+    "numberOfMessages": "{{activeChannelMessageCount}} сообщений",
+    "validation": {
+      "required": "Обязательное поле",
+      "noSpaces": "Сообщение не должно начинаться или заканчиваться пробелом"
+    }
   }
 }

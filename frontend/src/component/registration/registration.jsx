@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -14,6 +15,7 @@ import { registrationValidationSchema } from './registration-validation-schema.j
 export const Registration = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const initialValues = {
     username: '',
@@ -28,14 +30,14 @@ export const Registration = () => {
         username: values.username,
         password: values.password,
       }));
-      const data = unwrapResult(resultAction);
-      toast.success(`Registration user '${data.username}' is successful`, {
+      const { username } = unwrapResult(resultAction);
+      toast.success(t('user.registerSuccess', { username }), {
         position: 'top-right',
       });
       navigate(AppRoute.Main);
     } catch (error) {
       if (error === 'Conflict') {
-        setFieldError('username', 'Такой пользователь уже существует');
+        setFieldError('username', t('user.userExists'));
       }
     }
     setSubmitting(false);
@@ -48,7 +50,7 @@ export const Registration = () => {
           <img
             src="/img/registration-logo.jpg"
             className="rounded-circle"
-            alt="Регистрация"
+            alt={t('user.registration')}
           />
         </div>
         <Formik
@@ -58,7 +60,7 @@ export const Registration = () => {
         >
           {({ isSubmitting, errors, touched }) => (
             <Form className="w-50">
-              <h1 className="text-center mb-4">Регистрация</h1>
+              <h1 className="text-center mb-4">{t('user.registration')}</h1>
               <div className="form-floating mb-3">
                 <Field
                   name="username"
@@ -67,7 +69,7 @@ export const Registration = () => {
                   className={classNames('form-control', { 'is-invalid': errors.username && touched.username })}
                 />
                 {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                <label htmlFor="username">Имя пользователя</label>
+                <label htmlFor="username">{t('user.name')}</label>
                 <ErrorMessage name="username" component="div" className="invalid-feedback" />
               </div>
               <div className="form-floating mb-3">
@@ -80,7 +82,7 @@ export const Registration = () => {
                   className={classNames('form-control', { 'is-invalid': errors.password && touched.password })}
                 />
                 {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                <label htmlFor="password">Пароль</label>
+                <label htmlFor="password">{t('user.password')}</label>
                 <ErrorMessage name="password" component="div" className="invalid-feedback" />
               </div>
               <div className="form-floating mb-4">
@@ -92,7 +94,7 @@ export const Registration = () => {
                   className={classNames('form-control', { 'is-invalid': errors.confirmPassword && touched.confirmPassword })}
                 />
                 {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                <label htmlFor="confirmPassword">Подтвердите пароль</label>
+                <label htmlFor="confirmPassword">{t('user.confirmPassword')}</label>
                 <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
               </div>
               <button
@@ -101,7 +103,7 @@ export const Registration = () => {
                 disabled={isSubmitting}
               >
                 {' '}
-                Зарегистрироваться
+                {t('user.registrationProcess')}
               </button>
             </Form>
           )}
@@ -109,9 +111,9 @@ export const Registration = () => {
       </div>
       <div className="card-footer p-4">
         <div className="text-center">
-          <span>Есть аккаунт?</span>
+          <span>{t('user.haveAccount')}</span>
           {' '}
-          <Link to={AppRoute.Login}>Войти</Link>
+          <Link to={AppRoute.Login}>{t('user.login')}</Link>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { animateScroll } from 'react-scroll';
 import {
@@ -14,6 +15,7 @@ export const MessageList = () => {
   const activeChannelName = useSelector(getActiveChannelName);
   const activeChannelMessages = useSelector(getActiveChannelMessages);
   const activeChannelMessageCount = useSelector(getActiveChannelMessageCount);
+  const { t } = useTranslation();
 
   const messageElements = activeChannelMessages.map((message) => (
     <Message
@@ -32,7 +34,7 @@ export const MessageList = () => {
         <div className="bg-light mb-4 p-3 shadow-sm small">
           <p className="m-0"><b>{`# ${activeChannelName}`}</b></p>
           <span className="text-muted">
-            {`${activeChannelMessageCount} сообщений`}
+            {t('message.numberOfMessages', { activeChannelMessageCount })}
           </span>
         </div>
         <div

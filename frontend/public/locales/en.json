@@ -1,0 +1,75 @@
+{
+  "notFound": {
+    "noPage": "Page not found",
+    "redirectStart": "However, you can go",
+    "redirectStop": "to the homepage"
+  },
+  "load": {
+    "loading": "Loading..."
+  },
+  "user": {
+    "login": "Log in",
+    "logout": "Log out",
+    "loginSuccess": "User '{{username}}' has logged in",
+    "logoutSuccess": "User '{{username}}' has logged out",
+    "registerSuccess": "User '{{username}}' has been registered",
+    "loginFail": "Failed to log in. Please try again",
+    "wrongNamePassword": "Incorrect username or password",
+    "userExists": "This user already exists",
+    "nick": "Your nickname",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "name": "Username",
+    "noAccount": "Don't have an account?",
+    "registration": "Sign up",
+    "registrationProcess": "Register",
+    "haveAccount": "Already have an account?"
+  },
+  "channel": {
+    "createSuccess": "Channel created successfully",
+    "deleteSuccess": "Channel deleted successfully",
+    "renameSuccess": "Channel renamed successfully",
+    "createFail": "Failed to create channel. Please try again",
+    "deleteFail": "Failed to delete channel. Please try again",
+    "renameFail": "Failed to rename channel. Please try again",
+    "wrongName": "Invalid channel name",
+    "addChannel": "Add channel",
+    "deleteChannel": "Delete channel '{{dropMenuChannelName}}'",
+    "renameChannel": "Rename channel '{{dropMenuChannelName}}'",
+    "nameChannel": "Channel name",
+    "cancel": "Cancel",
+    "create": "Create",
+    "delete": "Delete",
+    "rename": "Rename",
+    "confirm": "Are you sure?",
+    "control": "Channel management",
+    "channels": "Channels",
+    "validation": {
+      "length": "Must be between {{min}} and {{max}} characters",
+      "noSpaces": "Name should not start or end with a space",
+      "required": "This field is required"
+    }
+  },
+  "message": {
+    "sendFail": "Failed to send message. Please try again",
+    "deleteFail": "Failed to delete message. Please try again",
+    "editFail": "Failed to edit message. Please try again",
+    "editMessage": "Edit message ID '{{dropMenuChatId}}'",
+    "deleteMessage": "Delete message ID '{{dropMenuChatId}}'",
+    "control": "Message management",
+    "delete": "Delete",
+    "edit": "Edit",
+    "confirm": "Are you sure?",
+    "cancel": "Cancel",
+    "send": "Send",
+    "wrongText": "Unable to send message",
+    "text": "Message text",
+    "new": "New message",
+    "inputText": "Enter message...",
+    "numberOfMessages": "{{activeChannelMessageCount}} messages",
+    "validation": {
+      "required": "This field is required",
+      "noSpaces": "Message should not start or end with a space"
+    }
+  }
+}

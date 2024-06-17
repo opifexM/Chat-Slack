@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import {
   setDropMenuChatId,
@@ -10,6 +11,7 @@ import {
 // eslint-disable-next-line import/prefer-default-export
 export const Message = ({ message }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const {
     id, body, username, removable,
   } = message;
@@ -45,7 +47,7 @@ export const Message = ({ message }) => {
             aria-expanded="false"
             onClick={() => handleDropMenuClick(id, body, username)}
           >
-            <span className="visually-hidden">Управление сообщением</span>
+            <span className="visually-hidden">{t('message.control')}</span>
           </button>
           <ul className="dropdown-menu">
             <li>
@@ -54,7 +56,7 @@ export const Message = ({ message }) => {
                 className="dropdown-item"
                 onClick={handleDeleteClick}
               >
-                Удалить
+                {t('message.delete')}
               </button>
             </li>
             <li>
@@ -63,7 +65,7 @@ export const Message = ({ message }) => {
                 className="dropdown-item"
                 onClick={handleRenameClick}
               >
-                Переименовать
+                {t('message.edit')}
               </button>
             </li>
           </ul>
