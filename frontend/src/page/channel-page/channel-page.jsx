@@ -33,6 +33,7 @@ export const ChannelPage = () => {
   useEffect(() => {
     const activeChannel = channels.find((channel) => channel.id === activeChannelId);
     if (channels.length && !activeChannel) {
+      console.log('reset');
       dispatch(setActiveChannelId(channels[0].id));
       dispatch(setActiveChannelName(channels[0].name));
     }

@@ -9,9 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import leoProfanity from '../../service/leo-profanity.js';
 import { addChannelAction, fetchChannelAction } from '../../store/api-action/chat-api-action.js';
+import { resetChannels } from '../../store/api-communication/api-communication.slice';
 import { getIsCreatingChannel } from '../../store/ui-setting/ui-setting.selector.js';
 import {
-  resetActiveChannel,
   resetDropMenuChannel,
   setActiveChannelId,
   setActiveChannelName,
@@ -54,7 +54,7 @@ export const ChannelCreate = () => {
       toast.success(t('channel.createSuccess'), {
         position: 'top-right',
       });
-      dispatch(resetActiveChannel());
+      dispatch(resetChannels());
       dispatch(resetDropMenuChannel());
       dispatch(setActiveChannelId(data.id));
       dispatch(setActiveChannelName(data.name));

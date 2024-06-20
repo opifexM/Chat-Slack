@@ -25,6 +25,9 @@ export const apiCommunicationSlice = createSlice({
     resetAuthStatus: (state) => {
       state.isAuthorized = false;
     },
+    resetChannels: (state) => {
+      state.channels = [];
+    },
   },
   extraReducers(builder) {
     builder
@@ -90,4 +93,5 @@ export const apiCommunicationSlice = createSlice({
 export const {
   setIsAuthorizedStatus,
   resetAuthStatus,
+  resetChannels,
 } = apiCommunicationSlice.actions;
