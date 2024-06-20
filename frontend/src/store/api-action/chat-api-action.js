@@ -5,7 +5,7 @@ import { handleApiError } from '../../service/api-error-handler.js';
 
 export const fetchChannelAction = createAsyncThunk(
   'chat/fetchChannelAction',
-  async (_arg, { extra: api, rejectWithValue }) => {
+  async (_arg, { extra: api, rejectWithValue, dispatch }) => {
     try {
       const { data } = await api.get(APIRoute.GetChannels);
 
@@ -14,6 +14,9 @@ export const fetchChannelAction = createAsyncThunk(
       toast.warning(handleApiError(error), {
         position: 'top-right',
       });
+      if (error.response.statusText === 'Unauthorized') {
+        dispatch({ type: 'apiCommunication/resetAuthStatus' });
+      }
       return rejectWithValue(handleApiError(error));
     }
   },
@@ -71,7 +74,7 @@ export const editChannelAction = createAsyncThunk(
 
 export const fetchChatMessagesAction = createAsyncThunk(
   'chat/fetchChatMessagesAction',
-  async (_arg, { extra: api, rejectWithValue }) => {
+  async (_arg, { extra: api, rejectWithValue, dispatch }) => {
     try {
       const { data } = await api.get(APIRoute.GetMessages);
 
@@ -80,6 +83,9 @@ export const fetchChatMessagesAction = createAsyncThunk(
       toast.warning(handleApiError(error), {
         position: 'top-right',
       });
+      if (error.response.statusText === 'Unauthorized') {
+        dispatch({ type: 'apiCommunication/resetAuthStatus' });
+      }
       return rejectWithValue(handleApiError(error));
     }
   },

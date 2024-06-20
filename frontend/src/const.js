@@ -29,4 +29,4 @@ export const NameSpace = {
 };
 
 export const BACKEND_REQUEST_TIMEOUT = 5000;
-export const COOKIE_TOKEN_KEY_NAME = 'chat-slack-token';
+export const COOKIE_KEY_NAME = 'chat-slack-token';

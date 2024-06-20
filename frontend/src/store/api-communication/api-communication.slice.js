@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { COOKIE_TOKEN_KEY_NAME, NameSpace } from '../../const.js';
+import { COOKIE_KEY_NAME, NameSpace } from '../../const.js';
 import { dropCookie, getCookie, saveCookie } from '../../service/cookie';
 import { dropToken, saveToken } from '../../service/token.js';
 import { fetchChannelAction, fetchChatMessagesAction } from '../api-action/chat-api-action.js';
@@ -10,7 +10,7 @@ import { loginAction, registerAction } from '../api-action/user-api-action.js';
 const initialState = {
   isLoading: false,
   isAuthorized: false,
-  username: getCookie(`${COOKIE_TOKEN_KEY_NAME}-username`),
+  username: getCookie(`${COOKIE_KEY_NAME}-username`),
   channels: [],
   messages: [],
 };
@@ -24,6 +24,9 @@ export const apiCommunicationSlice = createSlice({
     },
     resetAuthStatus: (state) => {
       state.isAuthorized = false;
+      state.username = '';
+      dropCookie(`${COOKIE_KEY_NAME}-username`);
+      dropToken();
     },
     resetChannels: (state) => {
       state.channels = [];
@@ -37,7 +40,7 @@ export const apiCommunicationSlice = createSlice({
       .addCase(registerAction.rejected, (state) => {
         state.isAuthorized = false;
         state.username = '';
-        dropCookie(`${COOKIE_TOKEN_KEY_NAME}-username`);
+        dropCookie(`${COOKIE_KEY_NAME}-username`);
         dropToken();
         state.isLoading = false;
       })
@@ -45,7 +48,7 @@ export const apiCommunicationSlice = createSlice({
         const { token, username } = action.payload;
         state.isAuthorized = true;
         state.username = username;
-        saveCookie(`${COOKIE_TOKEN_KEY_NAME}-username`, username);
+        saveCookie(`${COOKIE_KEY_NAME}-username`, username);
         saveToken(token);
         state.isLoading = false;
       })
@@ -56,7 +59,7 @@ export const apiCommunicationSlice = createSlice({
       .addCase(loginAction.rejected, (state) => {
         state.isAuthorized = false;
         state.username = '';
-        dropCookie(`${COOKIE_TOKEN_KEY_NAME}-username`);
+        dropCookie(`${COOKIE_KEY_NAME}-username`);
         dropToken();
         state.isLoading = false;
       })
@@ -64,7 +67,7 @@ export const apiCommunicationSlice = createSlice({
         const { token, username } = action.payload;
         state.isAuthorized = true;
         state.username = username;
-        saveCookie(`${COOKIE_TOKEN_KEY_NAME}-username`, username);
+        saveCookie(`${COOKIE_KEY_NAME}-username`, username);
         saveToken(token);
         state.isLoading = false;
       })
