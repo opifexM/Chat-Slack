@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChannelCreate } from '../../component/channel-create/channel-create.jsx';
 import { ChannelDelete } from '../../component/channel-delete/channel-delete.jsx';
@@ -8,13 +8,10 @@ import { Header } from '../../component/header/header.jsx';
 import { MessageDelete } from '../../component/message-delete/message-delete.jsx';
 import { MessageEdit } from '../../component/message-edit/message-edit.jsx';
 import { MessageList } from '../../component/message-list/message-list.jsx';
-import { APIRoute } from '../../const.js';
-import { initializeSocket } from '../../service/socket';
 import { fetchChannelAction, fetchChatMessagesAction } from '../../store/api-action/chat-api-action.js';
-import { getChannels, getMessages, getUsername } from '../../store/api-communication/api-communcation.selector.js';
+import { getChannels, getMessages } from '../../store/api-communication/api-communcation.selector.js';
 import { getActiveChannelId } from '../../store/ui-setting/ui-setting.selector.js';
 import {
-  addNewMessageActiveChannelMessages,
   setActiveChannelId,
   setActiveChannelMessageCount,
   setActiveChannelMessages,
@@ -27,53 +24,15 @@ export const ChannelPage = () => {
   const channels = useSelector(getChannels);
   const messages = useSelector(getMessages);
   const activeChannelId = useSelector(getActiveChannelId);
-  const username = useSelector(getUsername);
-  const socket = useMemo(() => initializeSocket(), []);
 
   useEffect(() => {
     dispatch(fetchChannelAction());
     dispatch(fetchChatMessagesAction());
-  }, [dispatch]);
+  }, [dispatch, activeChannelId]);
 
   useEffect(() => {
-    const handleNewMessage = (data) => {
-      if (username !== data.username
-                && data.channelId === activeChannelId) {
-        dispatch(addNewMessageActiveChannelMessages(data));
-      }
-    };
-
-    const handleFetchMessages = (data) => {
-      if (username !== data.username) {
-        dispatch(fetchChatMessagesAction());
-      }
-    };
-
-    socket.on(APIRoute.SubscribeNewMessage, handleNewMessage);
-    socket.on(APIRoute.SubscribeRenameMessage, handleFetchMessages);
-    socket.on(APIRoute.SubscribeRemoveMessage, handleFetchMessages);
-
-    return () => {
-      socket.off(APIRoute.SubscribeNewMessage, handleNewMessage);
-      socket.off(APIRoute.SubscribeRenameMessage, handleFetchMessages);
-      socket.off(APIRoute.SubscribeRemoveMessage, handleFetchMessages);
-    };
-  }, [dispatch, activeChannelId, username, socket]);
-
-  useEffect(() => {
-    socket.on(APIRoute.SubscribeNewChannel, () => dispatch(fetchChannelAction()));
-    socket.on(APIRoute.SubscribeRenameChannel, () => dispatch(fetchChannelAction()));
-    socket.on(APIRoute.SubscribeRemoveChannel, () => dispatch(fetchChannelAction()));
-
-    return () => {
-      socket.off(APIRoute.SubscribeNewChannel);
-      socket.off(APIRoute.SubscribeRenameChannel);
-      socket.off(APIRoute.SubscribeRemoveChannel);
-    };
-  }, [dispatch, socket]);
-
-  useEffect(() => {
-    if (channels.length && !activeChannelId) {
+    const activeChannel = channels.find((channel) => channel.id === activeChannelId);
+    if (channels.length && !activeChannel) {
       dispatch(setActiveChannelId(channels[0].id));
       dispatch(setActiveChannelName(channels[0].name));
     }

@@ -7,6 +7,7 @@ import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import leoProfanity from '../../service/leo-profanity';
 import { editChannelAction, fetchChannelAction } from '../../store/api-action/chat-api-action.js';
 import {
   getDropMenuChannelId,
@@ -51,8 +52,9 @@ export const ChannelEdit = () => {
 
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
+      const cleanedName = leoProfanity.clean(values.name);
       const resultAction = await dispatch(editChannelAction({
-        id: dropMenuChannelId, name: values.name,
+        id: dropMenuChannelId, name: cleanedName,
       }));
       unwrapResult(resultAction);
       toast.success(t('channel.renameSuccess'), {

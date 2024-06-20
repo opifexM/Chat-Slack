@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import { App } from './app.jsx';
 import { LoadingScreen } from './component/loading-screen/loading-screen.jsx';
 import { initializeI18n } from './i18n';
+import { initializeSocket } from './service/socket';
 import { store } from './store';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,6 +18,7 @@ const rollbarConfig = {
 };
 
 const i18n = initializeI18n();
+initializeSocket();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ProviderRollbar config={rollbarConfig}>

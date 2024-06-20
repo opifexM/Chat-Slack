@@ -55,7 +55,7 @@ export const Registration = () => {
         </div>
         <Formik
           initialValues={initialValues}
-          validationSchema={registrationValidationSchema}
+          validationSchema={registrationValidationSchema(t)}
           onSubmit={handleSubmit}
         >
           {({ isSubmitting, errors, touched }) => (

@@ -23,7 +23,13 @@
     "noAccount": "Don't have an account?",
     "registration": "Sign up",
     "registrationProcess": "Register",
-    "haveAccount": "Already have an account?"
+    "haveAccount": "Already have an account?",
+    "validation": {
+      "length": "Must be between {{min}} and {{max}} characters",
+      "min": "At least {{min}} characters",
+      "passwordNotMatch": "Passwords must match",
+      "required": "This field is required"
+    }
   },
   "channel": {
     "createSuccess": "Channel created successfully",

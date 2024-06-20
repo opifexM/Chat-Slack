@@ -23,7 +23,13 @@
     "noAccount": "Нет аккаунта?",
     "registration": "Регистрация",
     "registrationProcess": "Зарегистрироваться",
-    "haveAccount": "Есть аккаунт?"
+    "haveAccount": "Есть аккаунт?",
+    "validation": {
+      "length": "От {{min}} до {{max}} символов",
+      "min": "Не менее {{min}} символов",
+      "passwordNotMatch": "Пароли должны совпадать",
+      "required": "Обязательное поле"
+    }
   },
   "channel": {
     "createSuccess": "Канал создан",
