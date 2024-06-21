@@ -1,4 +1,5 @@
 {
+  "language" : "Language",
   "notFound": {
     "noPage": "Page not found",
     "redirectStart": "However, you can go",
