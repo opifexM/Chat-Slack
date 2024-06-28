@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hexlet/chat-server": "2.0.3",
-    "@playwright/test": "^1.44.1"
+    "@hexlet/chat-server": "2.0.3"
   }
 }
